@@ -1,0 +1,17 @@
+
+networks:
+  network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 12.0.0.0/24
+
+services:
+  web-next:
+    build:
+      dockerfile: ./docker/web-next/Dockerfile
+    ports:
+      - '5124:3000'
+    networks:
+      network:
+        ipv4_address: 12.0.0.4
