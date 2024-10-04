@@ -16,3 +16,18 @@ jobs:
 
     - name: Setup Docker, Docker compose and build start
       uses: hoverkraft-tech/compose-action@v2.0.1
+
+  build-nix:
+    name: Build on nix
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    - name: Setup nix
+      uses: cachix/install-nix-action@v27
+
+    - name: Enter nix flake devshell
+      run: nix develop .
+      if: always()
