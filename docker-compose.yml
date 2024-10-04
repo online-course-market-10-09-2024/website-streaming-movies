@@ -20,6 +20,15 @@ services:
       network:
         ipv4_address: 12.0.0.2
 
+  api-chi:
+    build:
+      dockerfile: ./docker/api-chi/Dockerfile
+    ports:
+      - '5123:3000'
+    networks:
+      network:
+        ipv4_address: 12.0.0.3
+
   web-next:
     build:
       dockerfile: ./docker/web-next/Dockerfile
