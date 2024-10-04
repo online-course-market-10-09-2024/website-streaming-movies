@@ -7,6 +7,19 @@ networks:
         - subnet: 12.0.0.0/24
 
 services:
+  database:
+    build:
+      dockerfile: ./docker/postgres-database/Dockerfile
+      args:
+        ENVIRONMENT: ${ENV_DEV}
+    ports:
+      - '5122:5432'
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      network:
+        ipv4_address: 12.0.0.2
+
   web-next:
     build:
       dockerfile: ./docker/web-next/Dockerfile
