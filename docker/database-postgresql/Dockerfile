@@ -8,10 +8,10 @@ RUN apk update && \
 ARG ENVIRONMENT
 
 # Copy the appropriate setup file based on the environment
-COPY postgres-database/src /docker-entrypoint-initdb.d/src
+COPY database-postgresql/src /docker-entrypoint-initdb.d/src
 
 # Setup database dir
 WORKDIR /database
 
 # Copy file to database
-COPY postgres-database/setup-database-dev.sql /docker-entrypoint-initdb.d/
+COPY database-postgresql/setup-database-dev.sql /docker-entrypoint-initdb.d/
