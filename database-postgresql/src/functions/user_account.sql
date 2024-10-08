@@ -127,7 +127,8 @@ CREATE OR REPLACE FUNCTION remove_user_account(
     DECLARE
         new_user_id UUID;
     BEGIN
-        DELETE FROM user_account
+        UPDATE user_account
+        SET status = 'inactive'
         WHERE id = input_id
         RETURNING id INTO new_user_id;
 
