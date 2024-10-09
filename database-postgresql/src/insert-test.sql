@@ -10,3 +10,8 @@ INSERT INTO movie (id, movie_category_id, name)
 VALUES ('2292fde6-3594-4924-b6be-d5336d7882ec', '6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1', 'movie 2');
 INSERT INTO movie (id, movie_category_id, name)
 VALUES ('303977f6-ea0d-44e0-b7db-b76b87fa146e', '6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1', 'movie 11');
+
+-- Insert movie_depend_movie_category
+INSERT INTO movie_depend_movie_category (movie_category_id, movie_id) VALUES ('6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
+INSERT INTO movie_depend_movie_category (movie_category_id, movie_id) VALUES ('493ea1f9-d9c4-4d2d-ab45-498472506081', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
+INSERT INTO movie_depend_movie_category (movie_category_id, movie_id) VALUES ('d96c08fe-4892-4a01-a535-4a7a3b736f1c', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
