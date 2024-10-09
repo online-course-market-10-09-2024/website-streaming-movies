@@ -14,14 +14,27 @@ CREATE TABLE public.movie_category (
     name TEXT UNIQUE
 );
 
+CREATE TABLE public.movie_direcator (
+    id   UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
+    name TEXT UNIQUE
+);
+
 CREATE TABLE public.movie (
-    id                UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
-    movie_category_id UUID,
-    name              TEXT,
-    description       TEXT,
+    id                 UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
+    movie_category_id  UUID,
+    movie_direcator_id UUID,
+    name               TEXT,
+    initial_date       DATE DEFAULT NOW(),
+    thumbnail_image    TEXT,
+    trailer_video_url  TEXT,
+    time_length        INT,
+    description        TEXT,
     CONSTRAINT fk_movie_category_for_movie
         FOREIGN KEY (movie_category_id)
-        REFERENCES public.movie_category(id)
+        REFERENCES public.movie_category(id),
+    CONSTRAINT fk_movie_direcator_for_movie
+        FOREIGN KEY (movie_direcator_id)
+        REFERENCES public.movie_direcator(id)
 );
 
 CREATE TABLE public.movie_depend_movie_category (
