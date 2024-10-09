@@ -13,9 +13,10 @@ services:
       args:
         ENVIRONMENT: ${ENV_DEV}
     ports:
-      - '5122:5432'
+      - '${POSTGRES_PUBLIC_PORT}:${POSTGRES_PORT}'
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
     networks:
       network:
         ipv4_address: 12.0.0.2
@@ -23,8 +24,14 @@ services:
   api-chi:
     build:
       dockerfile: ./docker/api-chi/Dockerfile
+    environment:
+      POSTGRES_USERNAME: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: ${POSTGRES_PUBLIC_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE}
     ports:
-      - '5123:3000'
+      - '12003:3000'
     networks:
       network:
         ipv4_address: 12.0.0.3
