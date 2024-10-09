@@ -38,6 +38,11 @@ test_wait_postgresql() {
 				/api-chi/cmd/services/movie_category.go /api-chi/cmd/services/movie_category_test.go
 			;;
 
+		"service-moviedependmoviecategory" )
+			docker exec ${PROJECT_API_CONTAINER} go test -v \
+				/api-chi/cmd/services/movie_depend_movie_category.go /api-chi/cmd/services/movie_depend_movie_category_test.go
+			;;
+
 		"service-movie" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
 				/api-chi/cmd/services/movie.go /api-chi/cmd/services/movie_test.go
@@ -56,7 +61,10 @@ if [ $# -eq 1 ]; then
 	case "$1" in
 		"test-api-service-moviecategory" )
 			test_wait_postgresql "service-moviecategory" ;;
-		
+
+		"test-api-service-moviedependmoviecategory" )
+			test_wait_postgresql "service-moviedependmoviecategory" ;;
+
 		"test-api-service-movie" )
 			test_wait_postgresql "service-movie" ;;
 
