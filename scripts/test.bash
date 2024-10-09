@@ -64,19 +64,19 @@ print_list() {
 # Main script
 if [ $# -eq 1 ]; then
 	case "$1" in
-		"test-api-service-moviecategory" )
+		"api-service-moviecategory" )
 			test_wait_postgresql "service-moviecategory" ;;
 
-		"test-api-service-moviedependmoviecategory" )
+		"api-service-moviedependmoviecategory" )
 			test_wait_postgresql "service-moviedependmoviecategory" ;;
 
-		"test-api-service-moviedirecator" )
+		"api-service-moviedirecator" )
 			test_wait_postgresql "service-moviedirecator" ;;
 
-		"test-api-service-movie" )
+		"api-service-movie" )
 			test_wait_postgresql "service-movie" ;;
 
-		"test-coverage" )
+		"coverage" )
 			docker exec ${PROJECT_API_CONTAINER} go test -coverprofile=coverage.out ./...
 			docker exec ${PROJECT_API_CONTAINER} go tool cover -html=coverage.out -o ./coverage.html
 			docker cp ${PROJECT_API_CONTAINER}:/api-chi/coverage.html ./coverage.html
