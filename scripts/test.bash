@@ -34,9 +34,14 @@ test_wait_postgresql() {
 
 	case $1 in
 		"service-moviecategory" )
-		docker exec ${PROJECT_API_CONTAINER} go test -v \
-			/api-chi/cmd/services/movie_category.go /api-chi/cmd/services/movie_category_test.go
-		;;
+			docker exec ${PROJECT_API_CONTAINER} go test -v \
+				/api-chi/cmd/services/movie_category.go /api-chi/cmd/services/movie_category_test.go
+			;;
+
+		"service-movie" )
+			docker exec ${PROJECT_API_CONTAINER} go test -v \
+				/api-chi/cmd/services/movie.go /api-chi/cmd/services/movie_test.go
+			;;
 	esac
 }
 
@@ -51,6 +56,9 @@ if [ $# -eq 1 ]; then
 	case "$1" in
 		"test-api-service-moviecategory" )
 			test_wait_postgresql "service-moviecategory" ;;
+		
+		"test-api-service-movie" )
+			test_wait_postgresql "service-movie" ;;
 
 		"test-coverage" )
 			docker exec ${PROJECT_API_CONTAINER} go test -coverprofile=coverage.out ./...
