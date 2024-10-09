@@ -34,7 +34,7 @@ jobs:
           api-chi
 
     - name: Test api-chi service
-      run: sh scripts/test.bash test-api-service-moviecategory
+      run: sh scripts/test.bash api-service-moviecategory
 
   test-api-chi-service-movie-dev:
     name: Build and test docker api-chi service movie dev
@@ -53,7 +53,7 @@ jobs:
           api-chi
 
     - name: Test api-chi service
-      run: sh scripts/test.bash test-api-service-movie
+      run: sh scripts/test.bash api-service-movie
 
   test-api-chi-service-moviedependmoviecategory-dev:
     name: Build and test docker api-chi service moviedependmoviecategory dev
@@ -72,7 +72,7 @@ jobs:
           api-chi
 
     - name: Test api-chi service
-      run: sh scripts/test.bash test-api-service-moviedependmoviecategory
+      run: sh scripts/test.bash api-service-moviedependmoviecategory
 
   test-api-chi-service-moviedirecator-dev:
     name: Build and test docker api-chi service moviedirecator dev
@@ -91,7 +91,7 @@ jobs:
           api-chi
 
     - name: Test api-chi service
-      run: sh scripts/test.bash test-api-service-moviedirecator
+      run: sh scripts/test.bash api-service-moviedirecator
 
   build-nix:
     name: Build on nix
