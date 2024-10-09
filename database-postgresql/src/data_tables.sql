@@ -15,9 +15,13 @@ CREATE TABLE public.movie_category (
 );
 
 CREATE TABLE public.movie (
-    id          UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
-    name        TEXT,
-    description TEXT
+    id                UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
+    movie_category_id UUID,
+    name              TEXT,
+    description       TEXT,
+    CONSTRAINT fk_movie_category_for_movie
+        FOREIGN KEY (movie_category_id)
+        REFERENCES public.movie_category(id)
 );
 
 CREATE TABLE public.movie_depend_movie_category (

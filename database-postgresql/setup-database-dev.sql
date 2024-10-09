@@ -4,6 +4,7 @@
 
 -- Create category_movie functions
 \i /docker-entrypoint-initdb.d/src/functions/movie_category.sql
+\i /docker-entrypoint-initdb.d/src/functions/movie.sql
 
 -- Insert test
 \i /docker-entrypoint-initdb.d/src/insert-test.sql
