@@ -74,6 +74,25 @@ jobs:
     - name: Test api-chi service
       run: sh scripts/test.bash test-api-service-moviedependmoviecategory
 
+  test-api-chi-service-moviedirecator-dev:
+    name: Build and test docker api-chi service moviedirecator dev
+    runs-on: ubuntu-24.04
+    needs: [ build-dev ]
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    - name: Setup Docker, Docker compose and build start
+      uses: hoverkraft-tech/compose-action@v2.0.1
+      with:
+        services: |
+          database-postgresql
+          api-chi
+
+    - name: Test api-chi service
+      run: sh scripts/test.bash test-api-service-moviedirecator
+
   build-nix:
     name: Build on nix
     runs-on: ubuntu-24.04
