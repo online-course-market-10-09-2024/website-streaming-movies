@@ -29,17 +29,17 @@ CREATE OR REPLACE FUNCTION update_movie_category(
     DECLARE
         return_id UUID;
     BEGIN
-        UPDATE category_movie
+        UPDATE movie_category
         SET name = input_name
-        WHERE id = input_id
-        RETURNING id INTO return_id;
+        WHERE movie_category.id = input_id
+        RETURNING movie_category.id INTO return_id;
 
         RETURN QUERY
             SELECT
-                c.id,
-                c.name
-            FROM category_movie c
-            WHERE c.id = input_id;
+                movie_category.id,
+                movie_category.name
+            FROM movie_category
+            WHERE movie_category.id = input_id;
     END;
     $$ LANGUAGE plpgsql;
 
@@ -51,7 +51,7 @@ CREATE OR REPLACE FUNCTION remove_movie_category(
     DECLARE
         return_id UUID;
     BEGIN
-        DELETE FROM category_movie
+        DELETE FROM movie_category
         WHERE id = input_id
         RETURNING id INTO return_id;
 
@@ -66,7 +66,7 @@ CREATE OR REPLACE FUNCTION count_movie_category()
         value_count NUMERIC;
     BEGIN
         SELECT COUNT(id) INTO value_count
-        FROM category_movie;
+        FROM movie_category;
 
         RETURN value_count;
     END;

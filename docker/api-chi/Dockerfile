@@ -7,6 +7,7 @@ COPY api-chi/go.mod api-chi/go.sum ./
 RUN go mod download
 
 # Copy source code
+COPY api-chi/cmd ./cmd
 COPY api-chi/main.go ./
 
 # Build and run
