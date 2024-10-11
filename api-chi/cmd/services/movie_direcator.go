@@ -89,3 +89,44 @@ func (s *MovieDirecatorService) Count() (int, error) {
 	// If success return nil
 	return value, nil
 }
+
+func (s *MovieDirecatorService) GetAll(search *string, limit *int, page *int) ([]models.MovieDirecator, error) {
+	// Set default range for limit
+	if *limit < 10 {
+		*limit = 10
+	} else if *limit > 50 {
+		*limit = 50
+	}
+
+	// Set default range for page
+	if *page < 1 {
+		*page = 0
+	} else {
+		*page = *page - 1
+	}
+
+	// Execute SQL
+	sql := "SELECT * FROM get_all_movie_direcator(@search, @limit, @page);"
+	args := pgx.NamedArgs{
+		"search": *search,
+		"limit":  *limit,
+		"page":   *page,
+	}
+	value := []models.MovieDirecator{}
+	rows, err := s.Conn.Query(config.CTX, sql, args)
+	if err != nil {
+		return value, err
+	}
+	for rows.Next() {
+		item := models.MovieDirecator{}
+
+		if err := rows.Scan(&item.Id, &item.Name); err != nil {
+			return nil, err
+		}
+
+		value = append(value, item)
+	}
+
+	// If success return nil
+	return value, nil
+}

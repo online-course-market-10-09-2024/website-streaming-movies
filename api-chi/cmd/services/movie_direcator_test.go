@@ -24,6 +24,126 @@ func Test_MovieDirecatorService(t *testing.T) {
 		assert.Greater(t, count, 0)
 	})
 
+	t.Run("GetAll default success", func(t *testing.T) {
+		// Connect database
+		err := service.Open()
+		defer service.Close()
+		assert.NoError(t, err)
+
+		// Declare input
+		search := ""
+		limit := 10
+		page := 1
+
+		// Count database
+		data, err := service.GetAll(&search, &limit, &page)
+		assert.NoError(t, err)
+		assert.IsType(t, data[0], models.MovieDirecator{})
+		count := 0
+		for _, item := range data {
+			count += 1
+			assert.NotEmpty(t, item.Id)
+			assert.NotEmpty(t, item.Name)
+		}
+		assert.Equal(t, count, 10)
+	})
+
+	t.Run("GetAll limit < 10 will return 10 success", func(t *testing.T) {
+		// Connect database
+		err := service.Open()
+		defer service.Close()
+		assert.NoError(t, err)
+
+		// Declare input
+		search := ""
+		limit := 9
+		page := 1
+
+		// Count database
+		data, err := service.GetAll(&search, &limit, &page)
+		assert.NoError(t, err)
+		assert.IsType(t, data[0], models.MovieDirecator{})
+		count := 0
+		for _, item := range data {
+			count += 1
+			assert.NotEmpty(t, item.Id)
+			assert.NotEmpty(t, item.Name)
+		}
+		assert.Equal(t, count, 10)
+	})
+
+	t.Run("GetAll limit > 50 will return 50 success", func(t *testing.T) {
+		// Connect database
+		err := service.Open()
+		defer service.Close()
+		assert.NoError(t, err)
+
+		// Declare input
+		search := ""
+		limit := 51
+		page := 1
+
+		// Count database
+		data, err := service.GetAll(&search, &limit, &page)
+		assert.NoError(t, err)
+		assert.IsType(t, data[0], models.MovieDirecator{})
+		count := 0
+		for _, item := range data {
+			count += 1
+			assert.NotEmpty(t, item.Id)
+			assert.NotEmpty(t, item.Name)
+		}
+		assert.Equal(t, count, 50)
+	})
+
+	t.Run("GetAll page < 1 will return 50 success", func(t *testing.T) {
+		// Connect database
+		err := service.Open()
+		defer service.Close()
+		assert.NoError(t, err)
+
+		// Declare input
+		search := ""
+		limit := 10
+		page := 0
+
+		// Count database
+		data, err := service.GetAll(&search, &limit, &page)
+		assert.NoError(t, err)
+		assert.IsType(t, data[0], models.MovieDirecator{})
+		count := 0
+		for _, item := range data {
+			count += 1
+			assert.NotEmpty(t, item.Id)
+			assert.NotEmpty(t, item.Name)
+		}
+		assert.Equal(t, count, 10)
+	})
+
+	t.Run("GetAll with search is direcator 1", func(t *testing.T) {
+		// Connect database
+		err := service.Open()
+		defer service.Close()
+		assert.NoError(t, err)
+
+		// Declare input
+		search := "direcator 1"
+		limit := 20
+		page := 1
+
+		// Count database
+		data, err := service.GetAll(&search, &limit, &page)
+		assert.NoError(t, err)
+		assert.IsType(t, data[0], models.MovieDirecator{})
+		count := 0
+		for _, item := range data {
+			count += 1
+			assert.NotEmpty(t, item.Id)
+			assert.NotEmpty(t, item.Name)
+		}
+		assert.Less(t, count, 20)
+	})
+
 	t.Run("Create success", func(t *testing.T) {
 		// Connect database
 		err := service.Open()
