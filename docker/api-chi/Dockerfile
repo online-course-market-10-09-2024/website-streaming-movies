@@ -8,6 +8,7 @@ RUN go mod download
 
 # Copy source code
 COPY api-chi/cmd ./cmd
+COPY api-chi/internal ./internal
 COPY api-chi/main.go ./
 
 # Build and run
