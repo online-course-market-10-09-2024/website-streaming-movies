@@ -16,6 +16,7 @@ func Test_MovieService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Count database
 		count, err := service.Count()
@@ -27,12 +28,13 @@ func Test_MovieService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.Movie{
 			MovieCategoryId: "6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1",
-			Name: "test movie",
-			Description: "movie is test movie",
+			Name:            "test movie",
+			Description:     "movie is test movie",
 		}
 
 		// Create database
@@ -48,13 +50,14 @@ func Test_MovieService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.Movie{
-			Id: id,
+			Id:              id,
 			MovieCategoryId: "493ea1f9-d9c4-4d2d-ab45-498472506081",
 		}
-	
+
 		// Update database
 		value, err := service.Update(&input)
 		assert.NoError(t, err)
@@ -67,13 +70,14 @@ func Test_MovieService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.Movie{
-			Id: id,
+			Id:   id,
 			Name: "this move is test movie",
 		}
-	
+
 		// Update database
 		value, err := service.Update(&input)
 		assert.NoError(t, err)
@@ -86,13 +90,14 @@ func Test_MovieService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.Movie{
-			Id: id,
+			Id:          id,
 			Description: "this move is test movie",
 		}
-	
+
 		// Update database
 		value, err := service.Update(&input)
 		assert.NoError(t, err)
@@ -105,15 +110,16 @@ func Test_MovieService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.Movie{
-			Id: id,
+			Id:              id,
 			MovieCategoryId: "6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1",
-			Name: "this is a only test movie",
-			Description: "this move is test only movie",
+			Name:            "this is a only test movie",
+			Description:     "this move is test only movie",
 		}
-	
+
 		// Update database
 		value, err := service.Update(&input)
 		assert.NoError(t, err)
@@ -128,6 +134,7 @@ func Test_MovieService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Remove database
 		value, err := service.Remove(&id)
@@ -135,4 +142,3 @@ func Test_MovieService(t *testing.T) {
 		assert.NotEmpty(t, value)
 	})
 }
-
