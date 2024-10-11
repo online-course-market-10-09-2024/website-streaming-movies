@@ -19,7 +19,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DATABASE}
     networks:
       network:
-        ipv4_address: 12.0.0.2
+        ipv4_address: ${POSTGRES_PUBLIC_HOST}
 
   api-chi:
     build:
@@ -31,10 +31,10 @@ services:
       POSTGRES_PORT: ${POSTGRES_PORT}
       POSTGRES_DATABASE: ${POSTGRES_DATABASE}
     ports:
-      - '12003:3000'
+      - '${API_PUBLIC_PORT}:${API_PORT}'
     networks:
       network:
-        ipv4_address: 12.0.0.3
+        ipv4_address: ${API_PUBLIC_HOST}
 
   web-next:
     build:
