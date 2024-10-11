@@ -16,6 +16,7 @@ func Test_MovieCategoryService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Count database
 		count, err := service.Count()
@@ -147,6 +148,7 @@ func Test_MovieCategoryService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.MovieCategory{
@@ -166,6 +168,7 @@ func Test_MovieCategoryService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.MovieCategory{
@@ -183,6 +186,7 @@ func Test_MovieCategoryService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Remove database
 		value, err := service.Remove(&id)

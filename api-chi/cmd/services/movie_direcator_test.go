@@ -16,6 +16,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Count database
 		count, err := service.Count()
@@ -27,6 +28,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.MovieDirecator{
@@ -46,6 +48,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Declare input
 		input := models.MovieDirecator{
@@ -65,6 +68,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
+		assert.NoError(t, err)
 
 		// Remove database
 		value, err := service.Remove(&id)
@@ -72,4 +76,3 @@ func Test_MovieDirecatorService(t *testing.T) {
 		assert.NotEmpty(t, value)
 	})
 }
-
