@@ -2,6 +2,7 @@ package main
 
 import (
 	"api-chi/cmd/config"
+	"api-chi/cmd/routes"
 
 	"net/http"
 
@@ -12,9 +13,10 @@ import (
 func main() {
 	config.LoadApiConfig()
 	r := chi.NewRouter()
+
 	r.Use(middleware.Logger)
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello World!"))
-	})
-	http.ListenAndServe(":" + config.API_PORT, r)
+
+	routes.MovieCategoryRoutes(r)
+
+	http.ListenAndServe(":"+config.API_PORT, r)
 }
