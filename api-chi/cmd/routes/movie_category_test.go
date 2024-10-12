@@ -53,7 +53,7 @@ func Test_MovieCategoryRoutes(t *testing.T) {
 	})
 
 	t.Run("Create success", func(t *testing.T) {
-		input := models.MovieCategory{Name: "test tag"}
+		input := models.MovieCategory{Name: "test category"}
 		body, _ := json.Marshal(input)
 
 		req := httptest.NewRequest("POST", "/movie-category", bytes.NewBuffer(body))
@@ -82,7 +82,7 @@ func Test_MovieCategoryRoutes(t *testing.T) {
 
 		input := models.MovieCategory{
 			Id:   id,
-			Name: "updated tag",
+			Name: "updated category",
 		}
 		body, _ := json.Marshal(input)
 
