@@ -32,7 +32,7 @@ func Test_MovieDependMovieCategoryService(t *testing.T) {
 
 		// Declare input
 		input := models.MovieDependMovieCategory{
-			MovieCategoryId: "6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1",
+			MovieCategoryId: "360d60a6-3f3a-4c00-927a-04aa35410acc",
 			MovieId:         "0bc66ff1-15ec-4d54-8830-1baf807b8091",
 		}
 
@@ -53,7 +53,7 @@ func Test_MovieDependMovieCategoryService(t *testing.T) {
 
 		// Declare input
 		input := models.MovieDependMovieCategory{
-			MovieCategoryId: "6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1",
+			MovieCategoryId: "360d60a6-3f3a-4c00-927a-04aa35410acc",
 			MovieId:         "0bc66ff1-15ec-4d54-8830-1baf807b8091",
 		}
 

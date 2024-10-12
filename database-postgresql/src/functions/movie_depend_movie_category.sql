@@ -49,20 +49,17 @@ CREATE OR REPLACE FUNCTION count_movie_depend_movie_category()
     END;
     $$ LANGUAGE plpgsql;
 
-CREATE OR REPLaCE FUNCTION limit_movie_depend_movie_category()
+CREATE OR REPLACE FUNCTION limit_movie_depend_movie_category()
 RETURNS TRIGGER AS
 $$
-DECLARE
-    quantity SMALLINT;
 BEGIN
-    -- Assign quantity from movie_depend_movie_category
-    SELECT COUNT(id) INTO quantity
-    FROM movie_depend_movie_category
-    WHERE movie_category_id = NEW.movie_category_id AND movie_id = NEW.movie_id;
-
-    -- Nếu quantity có nhiều hơn 1 thì sẽ cảnh báo và không thêm nữa
-    IF (quantity > 1) THEN
-        RAISE EXCEPTION 'Can''t have more than 1 movie_depend_movie_category same value!';
+    -- Check if already exists one value in table
+    IF EXISTS (
+        SELECT 1
+        FROM movie_depend_movie_category
+        WHERE movie_category_id = NEW.movie_category_id AND movie_id = NEW.movie_id
+    ) THEN
+        RAISE EXCEPTION 'Can''t have more than 1 movie_depend_movie_category with the same values!';
     END IF;
 
     RETURN NEW;
