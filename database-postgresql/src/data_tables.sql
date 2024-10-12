@@ -49,6 +49,18 @@ CREATE TABLE public.movie_depend_movie_category (
         REFERENCES public.movie(id)
 );
 
+CREATE TABLE public.movie_depend_movie_direcator (
+    id                 UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
+    movie_direcator_id UUID,
+    movie_id           UUID,
+    CONSTRAINT fk_movie_direcator_for_movie_depend
+        FOREIGN KEY (movie_direcator_id)
+        REFERENCES public.movie_direcator(id),
+    CONSTRAINT fk_movie_for_movie_depend
+        FOREIGN KEY (movie_id)
+        REFERENCES public.movie(id)
+);
+
 CREATE TABLE public.user_favorite_movie (
     id       UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
     user_id  UUID,
