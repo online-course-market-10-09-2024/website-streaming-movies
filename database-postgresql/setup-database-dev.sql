@@ -11,6 +11,7 @@
 
 -- Create triggers
 \i /docker-entrypoint-initdb.d/src/triggers/movie_depend_movie_category.sql
+\i /docker-entrypoint-initdb.d/src/triggers/movie_depend_movie_direcator.sql
 
 -- Insert test
 \i /docker-entrypoint-initdb.d/src/insert-test.sql

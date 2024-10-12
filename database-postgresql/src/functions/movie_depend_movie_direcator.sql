@@ -48,3 +48,21 @@ CREATE OR REPLACE FUNCTION count_movie_depend_movie_direcator()
         RETURN value_count;
     END;
     $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION limit_movie_depend_movie_direcator()
+RETURNS TRIGGER AS
+$$
+BEGIN
+    -- Check if already exists one value in table
+    IF EXISTS (
+        SELECT 1
+        FROM movie_depend_movie_direcator
+        WHERE movie_direcator_id = NEW.movie_direcator_id AND movie_id = NEW.movie_id
+    ) THEN
+        RAISE EXCEPTION 'Can''t have more than 1 movie_depend_movie_direcator with the same values!';
+    END IF;
+
+    RETURN NEW;
+END;
+$$
+LANGUAGE plpgsql;
