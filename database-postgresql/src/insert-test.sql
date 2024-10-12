@@ -62,12 +62,128 @@ INSERT INTO movie_category (name) VALUES ('category 60');
 
 
 -- Insert movie
-INSERT INTO movie (id, movie_category_id, name)
-VALUES ('0bc66ff1-15ec-4d54-8830-1baf807b8091', '6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1', 'movie 1');
-INSERT INTO movie (id, movie_category_id, name)
-VALUES ('2292fde6-3594-4924-b6be-d5336d7882ec', '6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1', 'movie 2');
-INSERT INTO movie (id, movie_category_id, name)
-VALUES ('303977f6-ea0d-44e0-b7db-b76b87fa146e', '6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1', 'movie 11');
+INSERT INTO movie (id, name)
+VALUES ('0bc66ff1-15ec-4d54-8830-1baf807b8091', 'movie 1');
+INSERT INTO movie (id, name)
+VALUES ('2292fde6-3594-4924-b6be-d5336d7882ec', 'movie 2');
+INSERT INTO movie (id, name)
+VALUES ('303977f6-ea0d-44e0-b7db-b76b87fa146e', 'movie 3');
+INSERT INTO movie (name)
+VALUES ('movie 4');
+INSERT INTO movie (name)
+VALUES ('movie 5');
+INSERT INTO movie (name)
+VALUES ('movie 6');
+INSERT INTO movie (name)
+VALUES ('movie 7');
+INSERT INTO movie (name)
+VALUES ('movie 8');
+INSERT INTO movie (name)
+VALUES ('movie 9');
+INSERT INTO movie (name)
+VALUES ('movie 10');
+INSERT INTO movie (name)
+VALUES ('movie 11');
+INSERT INTO movie (name)
+VALUES ('movie 12');
+INSERT INTO movie (name)
+VALUES ('movie 13');
+INSERT INTO movie (name)
+VALUES ('movie 14');
+INSERT INTO movie (name)
+VALUES ('movie 15');
+INSERT INTO movie (name)
+VALUES ('movie 16');
+INSERT INTO movie (name)
+VALUES ('movie 17');
+INSERT INTO movie (name)
+VALUES ('movie 18');
+INSERT INTO movie (name)
+VALUES ('movie 19');
+INSERT INTO movie (name)
+VALUES ('movie 20');
+INSERT INTO movie (name)
+VALUES ('movie 21');
+INSERT INTO movie (name)
+VALUES ('movie 22');
+INSERT INTO movie (name)
+VALUES ('movie 23');
+INSERT INTO movie (name)
+VALUES ('movie 24');
+INSERT INTO movie (name)
+VALUES ('movie 25');
+INSERT INTO movie (name)
+VALUES ('movie 26');
+INSERT INTO movie (name)
+VALUES ('movie 27');
+INSERT INTO movie (name)
+VALUES ('movie 28');
+INSERT INTO movie (name)
+VALUES ('movie 29');
+INSERT INTO movie (name)
+VALUES ('movie 30');
+INSERT INTO movie (name)
+VALUES ('movie 31');
+INSERT INTO movie (name)
+VALUES ('movie 32');
+INSERT INTO movie (name)
+VALUES ('movie 33');
+INSERT INTO movie (name)
+VALUES ('movie 34');
+INSERT INTO movie (name)
+VALUES ('movie 35');
+INSERT INTO movie (name)
+VALUES ('movie 36');
+INSERT INTO movie (name)
+VALUES ('movie 37');
+INSERT INTO movie (name)
+VALUES ('movie 38');
+INSERT INTO movie (name)
+VALUES ('movie 39');
+INSERT INTO movie (name)
+VALUES ('movie 40');
+INSERT INTO movie (name)
+VALUES ('movie 41');
+INSERT INTO movie (name)
+VALUES ('movie 42');
+INSERT INTO movie (name)
+VALUES ('movie 43');
+INSERT INTO movie (name)
+VALUES ('movie 44');
+INSERT INTO movie (name)
+VALUES ('movie 45');
+INSERT INTO movie (name)
+VALUES ('movie 46');
+INSERT INTO movie (name)
+VALUES ('movie 47');
+INSERT INTO movie (name)
+VALUES ('movie 48');
+INSERT INTO movie (name)
+VALUES ('movie 49');
+INSERT INTO movie (name)
+VALUES ('movie 50');
+INSERT INTO movie (name)
+VALUES ('movie 51');
+INSERT INTO movie (name)
+VALUES ('movie 52');
+INSERT INTO movie (name)
+VALUES ('movie 53');
+INSERT INTO movie (name)
+VALUES ('movie 54');
+INSERT INTO movie (name)
+VALUES ('movie 55');
+INSERT INTO movie (name)
+VALUES ('movie 56');
+INSERT INTO movie (name)
+VALUES ('movie 57');
+INSERT INTO movie (name)
+VALUES ('movie 58');
+INSERT INTO movie (name)
+VALUES ('movie 59');
+INSERT INTO movie (name)
+VALUES ('movie 60');
+
+
 
 -- Insert movie_director
 INSERT INTO movie_direcator (id, name) VALUES ('436d3a76-c367-403d-bc98-c27fd0ae0413', 'direcator 1');
