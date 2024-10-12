@@ -15,13 +15,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_MovieCategoryRoutes(t *testing.T) {
+func Test_MovieDirecatorRoutes(t *testing.T) {
 	r := chi.NewRouter()
-	MovieCategoryRoutes(r)
+	MovieDirecatorRoutes(r)
 	id := ""
 
 	t.Run("Count success", func(t *testing.T) {
-		req := httptest.NewRequest("GET", "/movie-category/count", nil)
+		req := httptest.NewRequest("GET", "/movie-direcator/count", nil)
 		res := httptest.NewRecorder()
 
 		r.ServeHTTP(res, req)
@@ -39,7 +39,7 @@ func Test_MovieCategoryRoutes(t *testing.T) {
 		limit := 10
 		page := 1
 
-		req := httptest.NewRequest("GET", fmt.Sprintf("/movie-category?search=%s&limit=%d&page=%d", search, limit, page), nil)
+		req := httptest.NewRequest("GET", fmt.Sprintf("/movie-direcator?search=%s&limit=%d&page=%d", search, limit, page), nil)
 		res := httptest.NewRecorder()
 
 		r.ServeHTTP(res, req)
@@ -53,10 +53,10 @@ func Test_MovieCategoryRoutes(t *testing.T) {
 	})
 
 	t.Run("Create success", func(t *testing.T) {
-		input := models.MovieCategory{Name: "test category"}
+		input := models.MovieDirecator{Name: "test direcator"}
 		body, _ := json.Marshal(input)
 
-		req := httptest.NewRequest("POST", "/movie-category", bytes.NewBuffer(body))
+		req := httptest.NewRequest("POST", "/movie-direcator", bytes.NewBuffer(body))
 		res := httptest.NewRecorder()
 
 		r.ServeHTTP(res, req)
@@ -80,13 +80,13 @@ func Test_MovieCategoryRoutes(t *testing.T) {
 			t.Fatal("ID must be set before running Update test")
 		}
 
-		input := models.MovieCategory{
+		input := models.MovieDirecator{
 			Id:   id,
-			Name: "updated category",
+			Name: "updated direcator",
 		}
 		body, _ := json.Marshal(input)
 
-		req := httptest.NewRequest("PATCH", "/movie-category", bytes.NewBuffer(body))
+		req := httptest.NewRequest("PATCH", "/movie-direcator", bytes.NewBuffer(body))
 		res := httptest.NewRecorder()
 
 		r.ServeHTTP(res, req)
@@ -104,7 +104,7 @@ func Test_MovieCategoryRoutes(t *testing.T) {
 			t.Fatal("ID must be set before running Remove test")
 		}
 
-		req := httptest.NewRequest("DELETE", "/movie-category/"+id, nil)
+		req := httptest.NewRequest("DELETE", "/movie-direcator/"+id, nil)
 		res := httptest.NewRecorder()
 
 		r.ServeHTTP(res, req)
