@@ -146,6 +146,17 @@ jobs:
         version: v1.61
         working-directory: ./api-chi
 
+  lint-web-next:
+    name: Lint web-next
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - run: cd web-next && npm install && npm run lint
+
   count-project-lines-of-code:
     name: Count project lines of code
     runs-on: ubuntu-24.04
