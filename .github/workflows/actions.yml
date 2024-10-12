@@ -115,7 +115,6 @@ jobs:
   lint-api-chi:
     name: Lint api-chi
     runs-on: ubuntu-24.04
-    needs: [ build-dev ]
 
     steps:
     - uses: actions/checkout@v4
