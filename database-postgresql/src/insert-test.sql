@@ -135,3 +135,7 @@ INSERT INTO movie_direcator (name) VALUES ('directator 60');
 INSERT INTO movie_depend_movie_category (movie_category_id, movie_id) VALUES ('6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
 INSERT INTO movie_depend_movie_category (movie_category_id, movie_id) VALUES ('493ea1f9-d9c4-4d2d-ab45-498472506081', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
 INSERT INTO movie_depend_movie_category (movie_category_id, movie_id) VALUES ('d96c08fe-4892-4a01-a535-4a7a3b736f1c', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
+
+INSERT INTO movie_depend_movie_direcator (movie_direcator_id, movie_id) VALUES ('436d3a76-c367-403d-bc98-c27fd0ae0413', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
+INSERT INTO movie_depend_movie_direcator (movie_direcator_id, movie_id) VALUES ('610b5ac2-c16e-4d80-bdcf-95bc5c10dec6', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
+INSERT INTO movie_depend_movie_direcator (movie_direcator_id, movie_id) VALUES ('24f9f4c2-d3b8-4d30-afeb-d94537a18b76', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
