@@ -45,6 +45,23 @@ func Test_MovieDependMovieCategoryService(t *testing.T) {
 		id = value
 	})
 
+	t.Run("Create same value must be failed prevent by trigger", func(t *testing.T) {
+		// Connect database
+		err := service.Open()
+		defer service.Close()
+		assert.NoError(t, err)
+
+		// Declare input
+		input := models.MovieDependMovieCategory{
+			MovieCategoryId: "6d35f2ac-9c3f-416e-aefe-6f21b90e7fb1",
+			MovieId:         "0bc66ff1-15ec-4d54-8830-1baf807b8091",
+		}
+
+		// Create database
+		_, err = service.Create(&input)
+		assert.Error(t, err)
+	})
+
 	t.Run("Remove success", func(t *testing.T) {
 		// Connect database
 		err := service.Open()
