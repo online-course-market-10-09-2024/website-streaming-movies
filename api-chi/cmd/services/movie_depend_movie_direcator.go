@@ -33,7 +33,7 @@ func (s *MovieDependMovieDirecatorService) Create(input *models.MovieDependMovie
 	sql := "SELECT * FROM create_movie_depend_movie_direcator(@movie_direcator_id, @movie_id);"
 	args := pgx.NamedArgs{
 		"movie_direcator_id": input.MovieDirecatorId,
-		"movie_id":          input.MovieId,
+		"movie_id":           input.MovieId,
 	}
 	value := ""
 	err := s.Conn.QueryRow(config.CTX, sql, args).Scan(&value)

@@ -1,0 +1,4 @@
+CREATE TRIGGER prevent_before_insert_movie_depend_movie_direcator
+BEFORE INSERT ON public.movie_depend_movie_direcator
+FOR EACH ROW
+EXECUTE FUNCTION limit_movie_depend_movie_direcator();
