@@ -6,10 +6,10 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func MovieDirecatorRoutes(r chi.Router) {
-	controller := controllers.MovieDirecatorController{}
+func MovieDirectorRoutes(r chi.Router) {
+	controller := controllers.MovieDirectorController{}
 
-	r.Route("/movie-direcator", func(r chi.Router) {
+	r.Route("/movie-director", func(r chi.Router) {
 		r.Get("/count", controller.Count)
 		r.Get("/", controller.GetAll)
 		r.Post("/", controller.Create)

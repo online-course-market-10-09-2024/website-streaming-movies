@@ -30,7 +30,7 @@ func (s *MovieDirecatorService) Close() {
 
 func (s *MovieDirecatorService) Create(input *models.MovieDirecator) (string, error) {
 	// Execute SQL
-	sql := "SELECT * FROM create_movie_direcator(@name);"
+	sql := "SELECT * FROM create_movie_director(@name);"
 	args := pgx.NamedArgs{
 		"name": input.Name,
 	}
@@ -46,7 +46,7 @@ func (s *MovieDirecatorService) Create(input *models.MovieDirecator) (string, er
 
 func (s *MovieDirecatorService) Update(input *models.MovieDirecator) (models.MovieDirecator, error) {
 	// Execute SQL
-	sql := "SELECT * FROM update_movie_direcator(@id, @name);"
+	sql := "SELECT * FROM update_movie_director(@id, @name);"
 	args := pgx.NamedArgs{
 		"id":   input.Id,
 		"name": input.Name,
@@ -63,7 +63,7 @@ func (s *MovieDirecatorService) Update(input *models.MovieDirecator) (models.Mov
 
 func (s *MovieDirecatorService) Remove(id *string) (string, error) {
 	// Execute SQL
-	sql := "SELECT * FROM remove_movie_direcator(@id);"
+	sql := "SELECT * FROM remove_movie_director(@id);"
 	args := pgx.NamedArgs{
 		"id": *id,
 	}
@@ -79,7 +79,7 @@ func (s *MovieDirecatorService) Remove(id *string) (string, error) {
 
 func (s *MovieDirecatorService) Count() (int, error) {
 	// Execute SQL
-	sql := "SELECT * FROM count_movie_direcator();"
+	sql := "SELECT * FROM count_movie_director();"
 	value := 0
 	err := s.Conn.QueryRow(config.CTX, sql).Scan(&value)
 	if err != nil {
@@ -106,7 +106,7 @@ func (s *MovieDirecatorService) GetAll(search *string, limit *int, page *int) ([
 	}
 
 	// Execute SQL
-	sql := "SELECT * FROM get_all_movie_direcator(@search, @limit, @page);"
+	sql := "SELECT * FROM get_all_movie_director(@search, @limit, @page);"
 	args := pgx.NamedArgs{
 		"search": *search,
 		"limit":  *limit,

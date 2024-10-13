@@ -120,14 +120,14 @@ func Test_MovieDirecatorService(t *testing.T) {
 		assert.Equal(t, count, 10)
 	})
 
-	t.Run("GetAll with search is direcator 1", func(t *testing.T) {
+	t.Run("GetAll with search is director 1", func(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
 		assert.NoError(t, err)
 
 		// Declare input
-		search := "direcator 1"
+		search := "director 1"
 		limit := 20
 		page := 1
 
@@ -152,7 +152,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 
 		// Declare input
 		input := models.MovieDirecator{
-			Name: "test direcator",
+			Name: "test director",
 		}
 
 		// Create database
@@ -173,7 +173,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Declare input
 		input := models.MovieDirecator{
 			Id:   id,
-			Name: "this is test direcator",
+			Name: "this is test director",
 		}
 
 		// Create database

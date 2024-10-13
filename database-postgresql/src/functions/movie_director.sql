@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION create_movie_direcator(
+CREATE OR REPLACE FUNCTION create_movie_director(
         input_name TEXT
     )
     RETURNS UUID
@@ -6,7 +6,7 @@ CREATE OR REPLACE FUNCTION create_movie_direcator(
     DECLARE
         return_id UUID;
     BEGIN
-        INSERT INTO movie_direcator (
+        INSERT INTO movie_director (
             name
         ) VALUES (
             input_name
@@ -17,7 +17,7 @@ CREATE OR REPLACE FUNCTION create_movie_direcator(
     END;
     $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION update_movie_direcator(
+CREATE OR REPLACE FUNCTION update_movie_director(
         input_id   UUID,
         input_name TEXT
     )
@@ -27,20 +27,20 @@ CREATE OR REPLACE FUNCTION update_movie_direcator(
     )
     AS $$
     BEGIN
-        UPDATE movie_direcator
+        UPDATE movie_director
         SET name = input_name
-        WHERE movie_direcator.id = input_id;
+        WHERE movie_director.id = input_id;
 
         RETURN QUERY
             SELECT
-                movie_direcator.id,
-                movie_direcator.name
-            FROM movie_direcator
-            WHERE movie_direcator.id = input_id;
+                movie_director.id,
+                movie_director.name
+            FROM movie_director
+            WHERE movie_director.id = input_id;
     END;
     $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION remove_movie_direcator(
+CREATE OR REPLACE FUNCTION remove_movie_director(
         input_id UUID
     )
     RETURNS UUID
@@ -48,7 +48,7 @@ CREATE OR REPLACE FUNCTION remove_movie_direcator(
     DECLARE
         return_id UUID;
     BEGIN
-        DELETE FROM movie_direcator
+        DELETE FROM movie_director
         WHERE id = input_id
         RETURNING id INTO return_id;
 
@@ -56,20 +56,20 @@ CREATE OR REPLACE FUNCTION remove_movie_direcator(
     END;
     $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION count_movie_direcator()
+CREATE OR REPLACE FUNCTION count_movie_director()
     RETURNS NUMERIC
     AS $$
     DECLARE
         value_count NUMERIC;
     BEGIN
         SELECT COUNT(id) INTO value_count
-        FROM movie_direcator;
+        FROM movie_director;
 
         RETURN value_count;
     END;
     $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION get_all_movie_direcator(
+CREATE OR REPLACE FUNCTION get_all_movie_director(
         input_search TEXT,
         input_limit  NUMERIC,
         input_page   NUMERIC
@@ -84,7 +84,7 @@ CREATE OR REPLACE FUNCTION get_all_movie_direcator(
         max_page    NUMERIC;
     BEGIN
         -- Get count
-        SELECT count_movie_direcator() INTO value_count;
+        SELECT count_movie_director() INTO value_count;
 
         -- Set default limit range
         IF input_limit < 10 THEN
@@ -108,9 +108,9 @@ CREATE OR REPLACE FUNCTION get_all_movie_direcator(
         END IF;
 
         RETURN QUERY
-            SELECT movie_direcator.id, movie_direcator.name
-            FROM movie_direcator
-            WHERE movie_direcator.name ILIKE '%' || input_search || '%'
+            SELECT movie_director.id, movie_director.name
+            FROM movie_director
+            WHERE movie_director.name ILIKE '%' || input_search || '%'
             LIMIT input_limit
             OFFSET input_limit*input_page;
     END;

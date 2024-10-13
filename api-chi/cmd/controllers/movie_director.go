@@ -14,11 +14,11 @@ import (
 	"github.com/go-chi/render"
 )
 
-type MovieDirecatorController struct {
-	service services.MovieDirecatorService
+type MovieDirectorController struct {
+	service services.MovieDirectorService
 }
 
-func (c *MovieDirecatorController) Count(w http.ResponseWriter, r *http.Request) {
+func (c *MovieDirectorController) Count(w http.ResponseWriter, r *http.Request) {
 	// Open and close database after end
 	err := c.service.Open()
 	defer c.service.Close()
@@ -44,7 +44,7 @@ func (c *MovieDirecatorController) Count(w http.ResponseWriter, r *http.Request)
 	})
 }
 
-func (c *MovieDirecatorController) GetAll(w http.ResponseWriter, r *http.Request) {
+func (c *MovieDirectorController) GetAll(w http.ResponseWriter, r *http.Request) {
 	// Retrieve query parameters
 	search := r.URL.Query().Get("search")
 	limit, err := strconv.Atoi(r.URL.Query().Get("limit"))
@@ -91,9 +91,9 @@ func (c *MovieDirecatorController) GetAll(w http.ResponseWriter, r *http.Request
 	})
 }
 
-func (c *MovieDirecatorController) Create(w http.ResponseWriter, r *http.Request) {
+func (c *MovieDirectorController) Create(w http.ResponseWriter, r *http.Request) {
 	// Get JSON from user input
-	input := models.MovieDirecator{}
+	input := models.MovieDirector{}
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
@@ -128,9 +128,9 @@ func (c *MovieDirecatorController) Create(w http.ResponseWriter, r *http.Request
 	})
 }
 
-func (c *MovieDirecatorController) Update(w http.ResponseWriter, r *http.Request) {
+func (c *MovieDirectorController) Update(w http.ResponseWriter, r *http.Request) {
 	// Get JSON from user input
-	input := models.MovieDirecator{}
+	input := models.MovieDirector{}
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
@@ -165,7 +165,7 @@ func (c *MovieDirecatorController) Update(w http.ResponseWriter, r *http.Request
 	})
 }
 
-func (c *MovieDirecatorController) Remove(w http.ResponseWriter, r *http.Request) {
+func (c *MovieDirectorController) Remove(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	if id == "" {
 		render.Status(r, http.StatusBadRequest)
