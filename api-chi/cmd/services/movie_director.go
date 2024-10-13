@@ -8,11 +8,11 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type MovieDirecatorService struct {
+type MovieDirectorService struct {
 	Conn *pgxpool.Pool
 }
 
-func (s *MovieDirecatorService) Open() error {
+func (s *MovieDirectorService) Open() error {
 	config.LoadConfig()
 	conn, err := pgxpool.New(config.CTX, config.POSTGRES_URL)
 	if err != nil {
@@ -24,13 +24,13 @@ func (s *MovieDirecatorService) Open() error {
 	return nil
 }
 
-func (s *MovieDirecatorService) Close() {
+func (s *MovieDirectorService) Close() {
 	s.Conn.Close()
 }
 
-func (s *MovieDirecatorService) Create(input *models.MovieDirecator) (string, error) {
+func (s *MovieDirectorService) Create(input *models.MovieDirector) (string, error) {
 	// Execute SQL
-	sql := "SELECT * FROM create_movie_direcator(@name);"
+	sql := "SELECT * FROM create_movie_director(@name);"
 	args := pgx.NamedArgs{
 		"name": input.Name,
 	}
@@ -44,14 +44,14 @@ func (s *MovieDirecatorService) Create(input *models.MovieDirecator) (string, er
 	return value, nil
 }
 
-func (s *MovieDirecatorService) Update(input *models.MovieDirecator) (models.MovieDirecator, error) {
+func (s *MovieDirectorService) Update(input *models.MovieDirector) (models.MovieDirector, error) {
 	// Execute SQL
-	sql := "SELECT * FROM update_movie_direcator(@id, @name);"
+	sql := "SELECT * FROM update_movie_director(@id, @name);"
 	args := pgx.NamedArgs{
 		"id":   input.Id,
 		"name": input.Name,
 	}
-	value := models.MovieDirecator{}
+	value := models.MovieDirector{}
 	err := s.Conn.QueryRow(config.CTX, sql, args).Scan(&value.Id, &value.Name)
 	if err != nil {
 		return value, err
@@ -61,9 +61,9 @@ func (s *MovieDirecatorService) Update(input *models.MovieDirecator) (models.Mov
 	return value, nil
 }
 
-func (s *MovieDirecatorService) Remove(id *string) (string, error) {
+func (s *MovieDirectorService) Remove(id *string) (string, error) {
 	// Execute SQL
-	sql := "SELECT * FROM remove_movie_direcator(@id);"
+	sql := "SELECT * FROM remove_movie_director(@id);"
 	args := pgx.NamedArgs{
 		"id": *id,
 	}
@@ -77,9 +77,9 @@ func (s *MovieDirecatorService) Remove(id *string) (string, error) {
 	return value, nil
 }
 
-func (s *MovieDirecatorService) Count() (int, error) {
+func (s *MovieDirectorService) Count() (int, error) {
 	// Execute SQL
-	sql := "SELECT * FROM count_movie_direcator();"
+	sql := "SELECT * FROM count_movie_director();"
 	value := 0
 	err := s.Conn.QueryRow(config.CTX, sql).Scan(&value)
 	if err != nil {
@@ -90,7 +90,7 @@ func (s *MovieDirecatorService) Count() (int, error) {
 	return value, nil
 }
 
-func (s *MovieDirecatorService) GetAll(search *string, limit *int, page *int) ([]models.MovieDirecator, error) {
+func (s *MovieDirectorService) GetAll(search *string, limit *int, page *int) ([]models.MovieDirector, error) {
 	// Set default range for limit
 	if *limit < 10 {
 		*limit = 10
@@ -106,19 +106,19 @@ func (s *MovieDirecatorService) GetAll(search *string, limit *int, page *int) ([
 	}
 
 	// Execute SQL
-	sql := "SELECT * FROM get_all_movie_direcator(@search, @limit, @page);"
+	sql := "SELECT * FROM get_all_movie_director(@search, @limit, @page);"
 	args := pgx.NamedArgs{
 		"search": *search,
 		"limit":  *limit,
 		"page":   *page,
 	}
-	value := []models.MovieDirecator{}
+	value := []models.MovieDirector{}
 	rows, err := s.Conn.Query(config.CTX, sql, args)
 	if err != nil {
 		return value, err
 	}
 	for rows.Next() {
-		item := models.MovieDirecator{}
+		item := models.MovieDirector{}
 
 		if err := rows.Scan(&item.Id, &item.Name); err != nil {
 			return nil, err

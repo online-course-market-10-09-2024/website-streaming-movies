@@ -43,14 +43,14 @@ test_wait_postgresql() {
 				/api-chi/cmd/services/movie_depend_movie_category.go /api-chi/cmd/services/movie_depend_movie_category_test.go
 			;;
 
-		"service-moviedependmoviedirecator" )
+		"service-moviedependmoviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/services/movie_depend_movie_direcator.go /api-chi/cmd/services/movie_depend_movie_direcator_test.go
+				/api-chi/cmd/services/movie_depend_movie_director.go /api-chi/cmd/services/movie_depend_movie_director_test.go
 			;;
 
-		"service-moviedirecator" )
+		"service-moviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/services/movie_direcator.go /api-chi/cmd/services/movie_direcator_test.go
+				/api-chi/cmd/services/movie_director.go /api-chi/cmd/services/movie_director_test.go
 			;;
 
 		"service-movie" )
@@ -63,9 +63,9 @@ test_wait_postgresql() {
 				/api-chi/cmd/routes/movie_category.go /api-chi/cmd/routes/movie_category_test.go
 			;;
 
-		"route-moviedirecator" )
+		"route-moviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/routes/movie_direcator.go /api-chi/cmd/routes/movie_direcator_test.go
+				/api-chi/cmd/routes/movie_director.go /api-chi/cmd/routes/movie_director_test.go
 			;;
 
 		"route-movie" )
@@ -90,11 +90,11 @@ if [ $# -eq 1 ]; then
 		"api-service-moviedependmoviecategory" )
 			test_wait_postgresql "service-moviedependmoviecategory" ;;
 
-		"api-service-moviedependmoviedirecator" )
-			test_wait_postgresql "service-moviedependmoviedirecator" ;;
+		"api-service-moviedependmoviedirector" )
+			test_wait_postgresql "service-moviedependmoviedirector" ;;
 
-		"api-service-moviedirecator" )
-			test_wait_postgresql "service-moviedirecator" ;;
+		"api-service-moviedirector" )
+			test_wait_postgresql "service-moviedirector" ;;
 
 		"api-service-movie" )
 			test_wait_postgresql "service-movie" ;;
@@ -102,8 +102,8 @@ if [ $# -eq 1 ]; then
 		"api-route-moviecategory" )
 			test_wait_postgresql "route-moviecategory";;
 
-		"api-route-moviedirecator" )
-			test_wait_postgresql "route-moviedirecator";;
+		"api-route-moviedirector" )
+			test_wait_postgresql "route-moviedirector";;
 
 		"api-route-movie" )
 			test_wait_postgresql "route-movie";;

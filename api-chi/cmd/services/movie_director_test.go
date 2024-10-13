@@ -8,9 +8,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_MovieDirecatorService(t *testing.T) {
+func Test_MovieDirectorService(t *testing.T) {
 	id := ""
-	service := MovieDirecatorService{}
+	service := MovieDirectorService{}
 
 	t.Run("Count success", func(t *testing.T) {
 		// Connect database
@@ -38,7 +38,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Count database
 		data, err := service.GetAll(&search, &limit, &page)
 		assert.NoError(t, err)
-		assert.IsType(t, data[0], models.MovieDirecator{})
+		assert.IsType(t, data[0], models.MovieDirector{})
 		count := 0
 		for _, item := range data {
 			count += 1
@@ -62,7 +62,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Count database
 		data, err := service.GetAll(&search, &limit, &page)
 		assert.NoError(t, err)
-		assert.IsType(t, data[0], models.MovieDirecator{})
+		assert.IsType(t, data[0], models.MovieDirector{})
 		count := 0
 		for _, item := range data {
 			count += 1
@@ -86,7 +86,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Count database
 		data, err := service.GetAll(&search, &limit, &page)
 		assert.NoError(t, err)
-		assert.IsType(t, data[0], models.MovieDirecator{})
+		assert.IsType(t, data[0], models.MovieDirector{})
 		count := 0
 		for _, item := range data {
 			count += 1
@@ -110,7 +110,7 @@ func Test_MovieDirecatorService(t *testing.T) {
 		// Count database
 		data, err := service.GetAll(&search, &limit, &page)
 		assert.NoError(t, err)
-		assert.IsType(t, data[0], models.MovieDirecator{})
+		assert.IsType(t, data[0], models.MovieDirector{})
 		count := 0
 		for _, item := range data {
 			count += 1
@@ -120,21 +120,21 @@ func Test_MovieDirecatorService(t *testing.T) {
 		assert.Equal(t, count, 10)
 	})
 
-	t.Run("GetAll with search is direcator 1", func(t *testing.T) {
+	t.Run("GetAll with search is director 1", func(t *testing.T) {
 		// Connect database
 		err := service.Open()
 		defer service.Close()
 		assert.NoError(t, err)
 
 		// Declare input
-		search := "direcator 1"
+		search := "director 1"
 		limit := 20
 		page := 1
 
 		// Count database
 		data, err := service.GetAll(&search, &limit, &page)
 		assert.NoError(t, err)
-		assert.IsType(t, data[0], models.MovieDirecator{})
+		assert.IsType(t, data[0], models.MovieDirector{})
 		count := 0
 		for _, item := range data {
 			count += 1
@@ -151,8 +151,8 @@ func Test_MovieDirecatorService(t *testing.T) {
 		assert.NoError(t, err)
 
 		// Declare input
-		input := models.MovieDirecator{
-			Name: "test direcator",
+		input := models.MovieDirector{
+			Name: "test director",
 		}
 
 		// Create database
@@ -171,9 +171,9 @@ func Test_MovieDirecatorService(t *testing.T) {
 		assert.NoError(t, err)
 
 		// Declare input
-		input := models.MovieDirecator{
+		input := models.MovieDirector{
 			Id:   id,
-			Name: "this is test direcator",
+			Name: "this is test director",
 		}
 
 		// Create database

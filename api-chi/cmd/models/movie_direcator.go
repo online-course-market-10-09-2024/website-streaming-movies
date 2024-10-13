@@ -1,6 +1,6 @@
 package models
 
-type MovieDirecator struct {
+type MovieDirector struct {
 	Id   string
 	Name string
 }
