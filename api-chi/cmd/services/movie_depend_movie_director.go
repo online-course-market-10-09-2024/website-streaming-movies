@@ -8,11 +8,11 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-type MovieDependMovieDirecatorService struct {
+type MovieDependMovieDirectorService struct {
 	Conn *pgxpool.Pool
 }
 
-func (s *MovieDependMovieDirecatorService) Open() error {
+func (s *MovieDependMovieDirectorService) Open() error {
 	config.LoadConfig()
 	conn, err := pgxpool.New(config.CTX, config.POSTGRES_URL)
 	if err != nil {
@@ -24,15 +24,15 @@ func (s *MovieDependMovieDirecatorService) Open() error {
 	return nil
 }
 
-func (s *MovieDependMovieDirecatorService) Close() {
+func (s *MovieDependMovieDirectorService) Close() {
 	s.Conn.Close()
 }
 
-func (s *MovieDependMovieDirecatorService) Create(input *models.MovieDependMovieDirecator) (string, error) {
+func (s *MovieDependMovieDirectorService) Create(input *models.MovieDependMovieDirector) (string, error) {
 	// Execute SQL
-	sql := "SELECT * FROM create_movie_depend_movie_direcator(@movie_direcator_id, @movie_id);"
+	sql := "SELECT * FROM create_movie_depend_movie_director(@movie_director_id, @movie_id);"
 	args := pgx.NamedArgs{
-		"movie_direcator_id": input.MovieDirecatorId,
+		"movie_director_id": input.MovieDirectorId,
 		"movie_id":           input.MovieId,
 	}
 	value := ""
@@ -45,9 +45,9 @@ func (s *MovieDependMovieDirecatorService) Create(input *models.MovieDependMovie
 	return value, nil
 }
 
-func (s *MovieDependMovieDirecatorService) Remove(id *string) (string, error) {
+func (s *MovieDependMovieDirectorService) Remove(id *string) (string, error) {
 	// Execute SQL
-	sql := "SELECT * FROM remove_movie_depend_movie_direcator(@id);"
+	sql := "SELECT * FROM remove_movie_depend_movie_director(@id);"
 	args := pgx.NamedArgs{
 		"id": *id,
 	}
@@ -61,9 +61,9 @@ func (s *MovieDependMovieDirecatorService) Remove(id *string) (string, error) {
 	return value, nil
 }
 
-func (s *MovieDependMovieDirecatorService) Count() (int, error) {
+func (s *MovieDependMovieDirectorService) Count() (int, error) {
 	// Execute SQL
-	sql := "SELECT * FROM count_movie_depend_movie_direcator();"
+	sql := "SELECT * FROM count_movie_depend_movie_director();"
 	value := 0
 	err := s.Conn.QueryRow(config.CTX, sql).Scan(&value)
 	if err != nil {

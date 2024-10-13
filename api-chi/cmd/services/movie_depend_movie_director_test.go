@@ -8,9 +8,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_MovieDependMovieDirecatorService(t *testing.T) {
+func Test_MovieDependMovieDirectorService(t *testing.T) {
 	id := ""
-	service := MovieDependMovieDirecatorService{}
+	service := MovieDependMovieDirectorService{}
 
 	t.Run("Count success", func(t *testing.T) {
 		// Connect database
@@ -31,9 +31,9 @@ func Test_MovieDependMovieDirecatorService(t *testing.T) {
 		assert.NoError(t, err)
 
 		// Declare input
-		input := models.MovieDependMovieDirecator{
-			MovieDirecatorId: "360d60a6-3f3a-4c00-927a-04aa35410acc",
-			MovieId:          "0bc66ff1-15ec-4d54-8830-1baf807b8091",
+		input := models.MovieDependMovieDirector{
+			MovieDirectorId: "360d60a6-3f3a-4c00-927a-04aa35410acc",
+			MovieId:         "0bc66ff1-15ec-4d54-8830-1baf807b8091",
 		}
 
 		// Create database
@@ -52,9 +52,9 @@ func Test_MovieDependMovieDirecatorService(t *testing.T) {
 		assert.NoError(t, err)
 
 		// Declare input
-		input := models.MovieDependMovieDirecator{
-			MovieDirecatorId: "360d60a6-3f3a-4c00-927a-04aa35410acc",
-			MovieId:          "0bc66ff1-15ec-4d54-8830-1baf807b8091",
+		input := models.MovieDependMovieDirector{
+			MovieDirectorId: "360d60a6-3f3a-4c00-927a-04aa35410acc",
+			MovieId:         "0bc66ff1-15ec-4d54-8830-1baf807b8091",
 		}
 
 		// Create database
