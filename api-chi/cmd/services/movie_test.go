@@ -296,6 +296,36 @@ func Test_MovieService(t *testing.T) {
 		assert.Equal(t, value.Description, input.Description)
 	})
 
+	t.Run("Update failed with no id", func(t *testing.T) {
+		// Connect database
+		err := service.Open()
+		defer service.Close()
+		assert.NoError(t, err)
+
+		// Declare input
+		input := models.Movie{}
+
+		// Update database
+		_, err = service.Update(&input)
+		assert.Error(t, err)
+	})
+
+	t.Run("Update failed with id no update field", func(t *testing.T) {
+		// Connect database
+		err := service.Open()
+		defer service.Close()
+		assert.NoError(t, err)
+
+		// Declare input
+		input := models.Movie{
+			Id: id,
+		}
+
+		// Update database
+		_, err = service.Update(&input)
+		assert.Error(t, err)
+	})
+
 	t.Run("Remove success", func(t *testing.T) {
 		// Connect database
 		err := service.Open()
