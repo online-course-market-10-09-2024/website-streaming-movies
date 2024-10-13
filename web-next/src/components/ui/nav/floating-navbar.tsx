@@ -6,7 +6,7 @@ import {
     useScroll,
     useMotionValueEvent,
 } from "framer-motion";
-import { cn } from "@/lib/utils.";
+import { cn } from "@/libs/utils";
 import Link from "next/link";
 import {HoverBorderGradient} from "components/ui/hover-border-gradient";
 

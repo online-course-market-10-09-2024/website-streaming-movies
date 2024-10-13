@@ -1,5 +1,5 @@
 "use client";
-import {cn} from "@/lib/utils.";
+import {cn} from "@/libs/utils";
 import {movieType} from "components/ui/Card/infinite-moving-cards";
 
 interface MovieCardProps {

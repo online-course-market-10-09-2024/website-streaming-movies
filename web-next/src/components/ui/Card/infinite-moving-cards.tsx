@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils.";
+import { cn } from "@/libs/utils";
 import React, { useEffect, useState } from "react";
 import {MovieCard} from "components/ui/Card/movieCard";
 
