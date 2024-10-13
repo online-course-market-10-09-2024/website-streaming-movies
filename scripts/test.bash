@@ -67,6 +67,11 @@ test_wait_postgresql() {
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
 				/api-chi/cmd/routes/movie_direcator.go /api-chi/cmd/routes/movie_direcator_test.go
 			;;
+
+		"route-movie" )
+			docker exec ${PROJECT_API_CONTAINER} go test -v \
+				/api-chi/cmd/routes/movie.go /api-chi/cmd/routes/movie_test.go
+			;;
 	esac
 }
 
@@ -99,6 +104,9 @@ if [ $# -eq 1 ]; then
 
 		"api-route-moviedirecator" )
 			test_wait_postgresql "route-moviedirecator";;
+
+		"api-route-movie" )
+			test_wait_postgresql "route-movie";;
 
 		"coverage" )
 			docker exec ${PROJECT_API_CONTAINER} go test -coverprofile=coverage.out ./...
