@@ -74,8 +74,8 @@ jobs:
     - name: Test api-chi service
       run: sh scripts/test.bash api-service-moviedependmoviecategory
 
-  test-api-chi-service-moviedependmoviedirecator-dev:
-    name: Build and test docker api-chi service moviedependmoviedirecator dev
+  test-api-chi-service-moviedependmoviedirector-dev:
+    name: Build and test docker api-chi service moviedependmoviedirector dev
     runs-on: ubuntu-24.04
     needs: [ build-dev ]
 
@@ -91,10 +91,10 @@ jobs:
           api-chi
 
     - name: Test api-chi service
-      run: sh scripts/test.bash api-service-moviedependmoviedirecator
+      run: sh scripts/test.bash api-service-moviedependmoviedirector
 
-  test-api-chi-service-moviedirecator-dev:
-    name: Build and test docker api-chi service moviedirecator dev
+  test-api-chi-service-moviedirector-dev:
+    name: Build and test docker api-chi service moviedirector dev
     runs-on: ubuntu-24.04
     needs: [ build-dev ]
 
@@ -110,7 +110,7 @@ jobs:
           api-chi
 
     - name: Test api-chi service
-      run: sh scripts/test.bash api-service-moviedirecator
+      run: sh scripts/test.bash api-service-moviedirector
 
   test-api-chi-route-moviecategory-dev:
     name: Build and test docker api-chi route moviecategory dev
@@ -131,8 +131,8 @@ jobs:
     - name: Test api-chi route
       run: sh scripts/test.bash api-route-moviecategory
 
-  test-api-chi-route-moviedirecator-dev:
-    name: Build and test docker api-chi route moviedirecator dev
+  test-api-chi-route-moviedirector-dev:
+    name: Build and test docker api-chi route moviedirector dev
     runs-on: ubuntu-24.04
     needs: [ build-dev ]
 
@@ -148,7 +148,7 @@ jobs:
           api-chi
 
     - name: Test api-chi route
-      run: sh scripts/test.bash api-route-moviedirecator
+      run: sh scripts/test.bash api-route-moviedirector
 
   test-api-chi-route-movie-dev:
     name: Build and test docker api-chi route movie dev
