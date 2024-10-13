@@ -1,18 +1,23 @@
-'use client'
+"use client";
 
-import React, { FormEvent, useState } from "react"
+import React, { FormEvent, useState } from "react";
 
 export default function LoginForm(): JSX.Element {
-  const [account, setAccount] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
+  const [account, setAccount] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleSubmitLogin = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log('Form submitted with account:', account, 'and password:', password)
-  }
+    event.preventDefault();
+    console.log(
+      "Form submitted with account:",
+      account,
+      "and password:",
+      password,
+    );
+  };
 
   return (
-    <form 
+    <form
       className="m-auto w-[450px] border p-10 flex flex-col gap-y-5"
       onSubmit={handleSubmitLogin}
     >
@@ -37,5 +42,5 @@ export default function LoginForm(): JSX.Element {
         Login
       </button>
     </form>
-  )
+  );
 }

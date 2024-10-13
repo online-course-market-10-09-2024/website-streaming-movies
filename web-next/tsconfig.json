@@ -23,7 +23,7 @@
       "lib/*": ["./src/libs/*"],
       "styles/*": ["./src/styles/*"],
       "utils/*": ["./src/utils/*"]
-    },
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
