@@ -128,7 +128,7 @@ jobs:
           database-postgresql
           api-chi
 
-    - name: Test api-chi service
+    - name: Test api-chi route
       run: sh scripts/test.bash api-route-moviecategory
 
   test-api-chi-route-moviedirecator-dev:
@@ -147,7 +147,7 @@ jobs:
           database-postgresql
           api-chi
 
-    - name: Test api-chi service
+    - name: Test api-chi route
       run: sh scripts/test.bash api-route-moviedirecator
 
   test-api-chi-route-movie-dev:
@@ -166,7 +166,7 @@ jobs:
           database-postgresql
           api-chi
 
-    - name: Test api-chi service
+    - name: Test api-chi route
       run: sh scripts/test.bash api-route-movie
 
   lint-api-chi:

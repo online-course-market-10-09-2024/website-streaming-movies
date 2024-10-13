@@ -3,6 +3,7 @@ package controllers
 import (
 	"api-chi/cmd/models"
 	"api-chi/cmd/services"
+	"api-chi/internal/libs"
 	"api-chi/internal/message"
 
 	"encoding/json"
@@ -51,7 +52,7 @@ func (c *MovieController) GetAll(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.GET_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
@@ -60,7 +61,7 @@ func (c *MovieController) GetAll(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.GET_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
@@ -97,7 +98,17 @@ func (c *MovieController) Create(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.CREATE_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
+			Data:    nil,
+		})
+		return
+	}
+
+	// Check InitialDate
+	if err := libs.CheckValidDate(input.InitialDate); err != nil {
+		render.Status(r, http.StatusBadRequest)
+		render.JSON(w, r, message.Response{
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
@@ -134,7 +145,17 @@ func (c *MovieController) Update(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.UPDATE_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
+			Data:    nil,
+		})
+		return
+	}
+
+	// Check InitialDate
+	if err := libs.CheckValidDate(input.InitialDate); err != nil {
+		render.Status(r, http.StatusBadRequest)
+		render.JSON(w, r, message.Response{
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
@@ -170,7 +191,7 @@ func (c *MovieController) Remove(w http.ResponseWriter, r *http.Request) {
 	if id == "" {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.REMOVE_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
