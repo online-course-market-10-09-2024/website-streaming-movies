@@ -52,14 +52,23 @@ CREATE TABLE public.movie_depend_movie_direcator (
         REFERENCES public.movie(id)
 );
 
-CREATE TABLE public.user_favorite_movie (
-    id       UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
-    user_id  UUID,
-    movie_id UUID,
-    CONSTRAINT fk_user_for_favorite_movie
+CREATE TABLE public.user_collection (
+    id   UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
+    name TEXT
+);
+
+CREATE TABLE public.user_movie (
+    id                 UUID PRIMARY KEY DEFAULT GEN_RANDOM_UUID(),
+    user_id            UUID,
+    movie_id           UUID,
+    user_collection_id UUID,
+    CONSTRAINT fk_user_for_user_movie
         FOREIGN KEY (user_id)
         REFERENCES public.user_account(id),
-    CONSTRAINT fk_movie_for_favorite_movie
+    CONSTRAINT fk_movie_for_user_movie
         FOREIGN KEY (movie_id)
-        REFERENCES public.movie(id)
+        REFERENCES public.movie(id),
+    CONSTRAINT fk_user_collection_for_user_movie
+        FOREIGN KEY (user_collection_id)
+        REFERENCES public.user_collection(id)
 );

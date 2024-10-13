@@ -19,6 +19,7 @@ func main() {
 
 	routes.MovieCategoryRoutes(r)
 	routes.MovieDirecatorRoutes(r)
+	routes.MovieRoutes(r)
 
 	err := http.ListenAndServe(":"+config.API_PORT, r)
 	if err != nil {
