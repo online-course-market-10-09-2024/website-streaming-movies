@@ -15,19 +15,21 @@ export function InputWithVanish(props: Props) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState<number>(0);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const startAnimation = () => {
+
+  const startAnimation = useCallback(() => {
     intervalRef.current = setInterval(() => {
       setCurrentPlaceholder((prev) => (prev + 1) % props.placeholders.length);
     }, 3000);
-  };
-  const handleVisibilityChange = () => {
+  }, [props.placeholders]);
+
+  const handleVisibilityChange = useCallback(() => {
     if (document.visibilityState !== "visible" && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     } else if (document.visibilityState === "visible") {
       startAnimation();
     }
-  };
+  }, [startAnimation]);
 
   useEffect(() => {
     startAnimation();
@@ -39,7 +41,7 @@ export function InputWithVanish(props: Props) {
       }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [props.placeholders]);
+  }, [handleVisibilityChange, startAnimation]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const newDataRef = useRef<AnimationData[]>([]);
