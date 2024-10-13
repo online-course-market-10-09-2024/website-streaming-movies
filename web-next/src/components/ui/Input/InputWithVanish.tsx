@@ -3,35 +3,21 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/libs/utils";
+import { AnimationData, PixelData } from "@/libs/types";
 
-interface PixelData {
-  x: number;
-  y: number;
-  color: [number, number, number, number];
-}
-
-interface AnimationData {
-  x: number;
-  y: number;
-  r: number;
-  color: string;
-}
-
-export function PlaceholdersAndVanishInput({
-  placeholders,
-  onChange,
-  onSubmit,
-}: {
+type Props = {
   placeholders: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-}) {
-  const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
+}
+
+export function InputWithVanish(props: Props) {
+  const [currentPlaceholder, setCurrentPlaceholder] = useState<number>(0);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const startAnimation = () => {
     intervalRef.current = setInterval(() => {
-      setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);
+      setCurrentPlaceholder((prev) => (prev + 1) % props.placeholders.length);
     }, 3000);
   };
   const handleVisibilityChange = () => {
@@ -53,7 +39,7 @@ export function PlaceholdersAndVanishInput({
       }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [placeholders]);
+  }, [props.placeholders]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const newDataRef = useRef<AnimationData[]>([]);
@@ -185,7 +171,7 @@ export function PlaceholdersAndVanishInput({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     vanishAndSubmit();
-    onSubmit(e);
+    props.onSubmit(e);
   };
 
   return (
@@ -207,7 +193,7 @@ export function PlaceholdersAndVanishInput({
         onChange={(e) => {
           if (!animating) {
             setValue(e.target.value);
-            onChange(e);
+            props.onChange(e);
           }
         }}
         onKeyDown={handleKeyDown}
@@ -280,7 +266,7 @@ export function PlaceholdersAndVanishInput({
               }}
               className="dark:text-zinc-500 text-sm sm:text-base font-normal text-neutral-500 pl-4 sm:pl-12 text-left w-[calc(100%-2rem)] truncate"
             >
-              {placeholders[currentPlaceholder]}
+              {props.placeholders[currentPlaceholder]}
             </motion.p>
           )}
         </AnimatePresence>
