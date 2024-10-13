@@ -81,6 +81,29 @@ func Test_MovieRoutes(t *testing.T) {
 		id = idValue
 	})
 
+	t.Run("Create failed with wrong initial date", func(t *testing.T) {
+		input := models.Movie{
+			Name:            "test movie",
+			InitialDate:     "2024-10123-12",
+			ThumbnailImage:  "test.png",
+			TrailerVideoUrl: "test-trailer",
+			Description:     "movie is test movie",
+		}
+		body, _ := json.Marshal(input)
+
+		req := httptest.NewRequest("POST", "/movie", bytes.NewBuffer(body))
+		res := httptest.NewRecorder()
+
+		r.ServeHTTP(res, req)
+
+		assert.Equal(t, http.StatusBadRequest, res.Code)
+		response := message.Response{}
+		err := json.NewDecoder(res.Body).Decode(&response)
+		assert.NoError(t, err)
+		assert.Equal(t, message.BAD_INPUT_REQUEST, response.Message)
+		assert.Nil(t, response.Data)
+	})
+
 	t.Run("Update success", func(t *testing.T) {
 		if id == "" {
 			t.Fatal("ID must be set before running Update test")
@@ -107,6 +130,34 @@ func Test_MovieRoutes(t *testing.T) {
 		assert.NoError(t, err)
 		assert.Equal(t, message.UPDATE_DATA_SUCCESS, response.Message)
 		assert.NotNil(t, response.Data)
+	})
+
+	t.Run("Update failed with wrong initial date", func(t *testing.T) {
+		if id == "" {
+			t.Fatal("ID must be set before running Update test")
+		}
+
+		input := models.Movie{
+			Id:              id,
+			Name:            "this is a only test movie",
+			InitialDate:     "2024-12-31230",
+			ThumbnailImage:  "thumbnail-for-best-test-movie.png",
+			TrailerVideoUrl: "this-best-trailer-video-url-for-test-movie",
+			Description:     "this move is description for test only movie",
+		}
+		body, _ := json.Marshal(input)
+
+		req := httptest.NewRequest("PATCH", "/movie", bytes.NewBuffer(body))
+		res := httptest.NewRecorder()
+
+		r.ServeHTTP(res, req)
+
+		assert.Equal(t, http.StatusBadRequest, res.Code)
+		response := message.Response{}
+		err := json.NewDecoder(res.Body).Decode(&response)
+		assert.NoError(t, err)
+		assert.Equal(t, message.BAD_INPUT_REQUEST, response.Message)
+		assert.Nil(t, response.Data)
 	})
 
 	t.Run("Remove success", func(t *testing.T) {

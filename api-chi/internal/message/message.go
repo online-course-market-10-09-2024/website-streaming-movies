@@ -10,6 +10,7 @@ const (
 
 // Failed message
 const (
+	BAD_INPUT_REQUEST  = "Bad input request!"
 	GET_DATA_FAILED    = "Get data failed!"
 	CREATE_DATA_FAILED = "Create data failed!"
 	UPDATE_DATA_FAILED = "Update data failed!"

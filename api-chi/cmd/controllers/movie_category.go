@@ -51,7 +51,7 @@ func (c *MovieCategoryController) GetAll(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.GET_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
@@ -60,7 +60,7 @@ func (c *MovieCategoryController) GetAll(w http.ResponseWriter, r *http.Request)
 	if err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.GET_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
@@ -97,7 +97,7 @@ func (c *MovieCategoryController) Create(w http.ResponseWriter, r *http.Request)
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.CREATE_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
@@ -134,7 +134,7 @@ func (c *MovieCategoryController) Update(w http.ResponseWriter, r *http.Request)
 	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.UPDATE_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
@@ -170,7 +170,7 @@ func (c *MovieCategoryController) Remove(w http.ResponseWriter, r *http.Request)
 	if id == "" {
 		render.Status(r, http.StatusBadRequest)
 		render.JSON(w, r, message.Response{
-			Message: message.REMOVE_DATA_FAILED,
+			Message: message.BAD_INPUT_REQUEST,
 			Data:    nil,
 		})
 		return
