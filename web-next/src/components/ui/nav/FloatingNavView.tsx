@@ -16,8 +16,6 @@ export function FloatingNavView() {
     },
   ];
   return (
-    <div className="flex flex-row w-full">
       <FloatingNav navItems={navItems_1} />
-    </div>
   );
 }
