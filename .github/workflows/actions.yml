@@ -131,6 +131,25 @@ jobs:
     - name: Test api-chi route
       run: sh scripts/test.bash api-route-moviecategory
 
+  test-api-chi-route-moviedependmoviecategory-dev:
+    name: Build and test docker api-chi route moviedependmoviecategory dev
+    runs-on: ubuntu-24.04
+    needs: [ build-dev ]
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    - name: Setup Docker, Docker compose and build start
+      uses: hoverkraft-tech/compose-action@v2.0.1
+      with:
+        services: |
+          database-postgresql
+          api-chi
+
+    - name: Test api-chi route
+      run: sh scripts/test.bash api-route-moviedependmoviecategory
+
   test-api-chi-route-moviedirector-dev:
     name: Build and test docker api-chi route moviedirector dev
     runs-on: ubuntu-24.04
