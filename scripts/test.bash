@@ -63,6 +63,11 @@ test_wait_postgresql() {
 				/api-chi/cmd/routes/movie_category.go /api-chi/cmd/routes/movie_category_test.go
 			;;
 
+		"route-moviedependmoviecategory" )
+			docker exec ${PROJECT_API_CONTAINER} go test -v \
+				/api-chi/cmd/routes/movie_depend_movie_category.go /api-chi/cmd/routes/movie_depend_movie_category_test.go
+			;;
+
 		"route-moviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
 				/api-chi/cmd/routes/movie_director.go /api-chi/cmd/routes/movie_director_test.go
@@ -101,6 +106,9 @@ if [ $# -eq 1 ]; then
 
 		"api-route-moviecategory" )
 			test_wait_postgresql "route-moviecategory";;
+
+		"api-route-moviedependmoviecategory" )
+			test_wait_postgresql "route-moviedependmoviecategory";;
 
 		"api-route-moviedirector" )
 			test_wait_postgresql "route-moviedirector";;
