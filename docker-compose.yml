@@ -21,9 +21,9 @@ services:
       network:
         ipv4_address: ${POSTGRES_PUBLIC_HOST}
 
-  api-chi:
+  api-fastify:
     build:
-      dockerfile: ./docker/api-chi/Dockerfile
+      dockerfile: ./docker/api-fastify/Dockerfile
     environment:
       POSTGRES_USERNAME: ${POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
