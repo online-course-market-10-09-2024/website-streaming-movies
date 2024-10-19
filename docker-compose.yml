@@ -36,11 +36,11 @@ services:
       network:
         ipv4_address: ${API_PUBLIC_HOST}
 
-  web-next:
+  web-vite:
     build:
-      dockerfile: ./docker/web-next/Dockerfile
+      dockerfile: ./docker/web-vite/Dockerfile
     ports:
-      - '5124:3000'
+      - '${WEB_PUBLIC_PORT}:${WEB_PORT}'
     networks:
       network:
-        ipv4_address: 12.0.0.4
+        ipv4_address: ${WEB_PUBLIC_HOST}
