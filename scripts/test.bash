@@ -33,6 +33,11 @@ test_wait_postgresql() {
 	echo "PostgreSQL is ready after $attempt_count attempts. Running the test..."
 
 	case $1 in
+		"service-movie" )
+			docker exec ${PROJECT_API_CONTAINER} go test -v \
+				/api-chi/cmd/services/movie.go /api-chi/cmd/services/movie_test.go
+			;;
+
 		"service-moviecategory" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
 				/api-chi/cmd/services/movie_category.go /api-chi/cmd/services/movie_category_test.go
@@ -53,10 +58,9 @@ test_wait_postgresql() {
 				/api-chi/cmd/services/movie_director.go /api-chi/cmd/services/movie_director_test.go
 			;;
 
-		"service-movie" )
-			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/services/movie.go /api-chi/cmd/services/movie_test.go
-			;;
+    "service-useraccount" )
+      docker exec ${PROJECT_API_CONTAINER} npm run test-service-useraccount
+      ;;
 
 		"route-moviecategory" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
@@ -89,6 +93,9 @@ print_list() {
 # Main script
 if [ $# -eq 1 ]; then
 	case "$1" in
+		"api-service-movie" )
+			test_wait_postgresql "service-movie" ;;
+
 		"api-service-moviecategory" )
 			test_wait_postgresql "service-moviecategory" ;;
 
@@ -101,8 +108,8 @@ if [ $# -eq 1 ]; then
 		"api-service-moviedirector" )
 			test_wait_postgresql "service-moviedirector" ;;
 
-		"api-service-movie" )
-			test_wait_postgresql "service-movie" ;;
+		"api-service-useraccount" )
+			test_wait_postgresql "service-useraccount" ;;
 
 		"api-route-moviecategory" )
 			test_wait_postgresql "route-moviecategory";;
