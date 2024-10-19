@@ -17,8 +17,8 @@ jobs:
     - name: Setup Docker, Docker compose and build start
       uses: hoverkraft-tech/compose-action@v2.0.1
 
-  test-api-chi-service-moviecategory-dev:
-    name: Build and test docker api-chi service moviecategory dev
+  test-api-fastify-service-useraccount:
+    name: Build and test docker api-fastify service useraccount
     runs-on: ubuntu-24.04
     needs: [ build-dev ]
 
@@ -31,178 +31,11 @@ jobs:
       with:
         services: |
           database-postgresql
-          api-chi
+          api-fastify
 
-    - name: Test api-chi service
-      run: sh scripts/test.bash api-service-moviecategory
-
-  test-api-chi-service-movie-dev:
-    name: Build and test docker api-chi service movie dev
-    runs-on: ubuntu-24.04
-    needs: [ build-dev ]
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Setup Docker, Docker compose and build start
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with:
-        services: |
-          database-postgresql
-          api-chi
-
-    - name: Test api-chi service
-      run: sh scripts/test.bash api-service-movie
-
-  test-api-chi-service-moviedependmoviecategory-dev:
-    name: Build and test docker api-chi service moviedependmoviecategory dev
-    runs-on: ubuntu-24.04
-    needs: [ build-dev ]
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Setup Docker, Docker compose and build start
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with:
-        services: |
-          database-postgresql
-          api-chi
-
-    - name: Test api-chi service
-      run: sh scripts/test.bash api-service-moviedependmoviecategory
-
-  test-api-chi-service-moviedependmoviedirector-dev:
-    name: Build and test docker api-chi service moviedependmoviedirector dev
-    runs-on: ubuntu-24.04
-    needs: [ build-dev ]
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Setup Docker, Docker compose and build start
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with:
-        services: |
-          database-postgresql
-          api-chi
-
-    - name: Test api-chi service
-      run: sh scripts/test.bash api-service-moviedependmoviedirector
-
-  test-api-chi-service-moviedirector-dev:
-    name: Build and test docker api-chi service moviedirector dev
-    runs-on: ubuntu-24.04
-    needs: [ build-dev ]
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Setup Docker, Docker compose and build start
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with:
-        services: |
-          database-postgresql
-          api-chi
-
-    - name: Test api-chi service
-      run: sh scripts/test.bash api-service-moviedirector
-
-  test-api-chi-route-moviecategory-dev:
-    name: Build and test docker api-chi route moviecategory dev
-    runs-on: ubuntu-24.04
-    needs: [ build-dev ]
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Setup Docker, Docker compose and build start
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with:
-        services: |
-          database-postgresql
-          api-chi
-
-    - name: Test api-chi route
-      run: sh scripts/test.bash api-route-moviecategory
-
-  test-api-chi-route-moviedependmoviecategory-dev:
-    name: Build and test docker api-chi route moviedependmoviecategory dev
-    runs-on: ubuntu-24.04
-    needs: [ build-dev ]
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Setup Docker, Docker compose and build start
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with:
-        services: |
-          database-postgresql
-          api-chi
-
-    - name: Test api-chi route
-      run: sh scripts/test.bash api-route-moviedependmoviecategory
-
-  test-api-chi-route-moviedirector-dev:
-    name: Build and test docker api-chi route moviedirector dev
-    runs-on: ubuntu-24.04
-    needs: [ build-dev ]
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Setup Docker, Docker compose and build start
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with:
-        services: |
-          database-postgresql
-          api-chi
-
-    - name: Test api-chi route
-      run: sh scripts/test.bash api-route-moviedirector
-
-  test-api-chi-route-movie-dev:
-    name: Build and test docker api-chi route movie dev
-    runs-on: ubuntu-24.04
-    needs: [ build-dev ]
-
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-
-    - name: Setup Docker, Docker compose and build start
-      uses: hoverkraft-tech/compose-action@v2.0.1
-      with:
-        services: |
-          database-postgresql
-          api-chi
-
-    - name: Test api-chi route
-      run: sh scripts/test.bash api-route-movie
-
-  lint-api-chi:
-    name: Lint api-chi
-    runs-on: ubuntu-24.04
-
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-go@v5
-      with:
-        go-version: 1.22.7
-    - name: golangci-lint
-      uses: golangci/golangci-lint-action@v6
-      with:
-        version: v1.61
-        working-directory: ./api-chi
-
+    - name: Test api-fastify service useraccount
+      run: sh scripts/test.bash api-service-useraccount
+ 
   lint-web-next:
     name: Lint web-next
     runs-on: ubuntu-24.04
