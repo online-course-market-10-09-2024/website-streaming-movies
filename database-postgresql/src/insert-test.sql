@@ -255,3 +255,125 @@ INSERT INTO movie_depend_movie_category (movie_category_id, movie_id) VALUES ('d
 INSERT INTO movie_depend_movie_director (movie_director_id, movie_id) VALUES ('436d3a76-c367-403d-bc98-c27fd0ae0413', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
 INSERT INTO movie_depend_movie_director (movie_director_id, movie_id) VALUES ('610b5ac2-c16e-4d80-bdcf-95bc5c10dec6', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
 INSERT INTO movie_depend_movie_director (movie_director_id, movie_id) VALUES ('24f9f4c2-d3b8-4d30-afeb-d94537a18b76', '0bc66ff1-15ec-4d54-8830-1baf807b8091');
+
+-- Insert user_account
+INSERT INTO user_account (username, password)
+VALUES ('account 1', 'account1');
+INSERT INTO user_account (username, password)
+VALUES ('account 2', 'account2');
+INSERT INTO user_account (username, password)
+VALUES ('account 3', 'account3');
+INSERT INTO user_account (username, password)
+VALUES ('account 4', 'account4');
+INSERT INTO user_account (username, password)
+VALUES ('account 5', 'account5');
+INSERT INTO user_account (username, password)
+VALUES ('account 6', 'account6');
+INSERT INTO user_account (username, password)
+VALUES ('account 7', 'account7');
+INSERT INTO user_account (username, password)
+VALUES ('account 8', 'account8');
+INSERT INTO user_account (username, password)
+VALUES ('account 9', 'account9');
+INSERT INTO user_account (username, password)
+VALUES ('account 10', 'account10');
+INSERT INTO user_account (username, password)
+VALUES ('account 11', 'account11');
+INSERT INTO user_account (username, password)
+VALUES ('account 12', 'account12');
+INSERT INTO user_account (username, password)
+VALUES ('account 13', 'account13');
+INSERT INTO user_account (username, password)
+VALUES ('account 14', 'account14');
+INSERT INTO user_account (username, password)
+VALUES ('account 15', 'account15');
+INSERT INTO user_account (username, password)
+VALUES ('account 16', 'account16');
+INSERT INTO user_account (username, password)
+VALUES ('account 17', 'account17');
+INSERT INTO user_account (username, password)
+VALUES ('account 18', 'account18');
+INSERT INTO user_account (username, password)
+VALUES ('account 19', 'account19');
+INSERT INTO user_account (username, password)
+VALUES ('account 20', 'account20');
+INSERT INTO user_account (username, password)
+VALUES ('account 21', 'account21');
+INSERT INTO user_account (username, password)
+VALUES ('account 22', 'account22');
+INSERT INTO user_account (username, password)
+VALUES ('account 23', 'account23');
+INSERT INTO user_account (username, password)
+VALUES ('account 24', 'account24');
+INSERT INTO user_account (username, password)
+VALUES ('account 25', 'account25');
+INSERT INTO user_account (username, password)
+VALUES ('account 26', 'account26');
+INSERT INTO user_account (username, password)
+VALUES ('account 27', 'account27');
+INSERT INTO user_account (username, password)
+VALUES ('account 28', 'account28');
+INSERT INTO user_account (username, password)
+VALUES ('account 29', 'account29');
+INSERT INTO user_account (username, password)
+VALUES ('account 30', 'account30');
+INSERT INTO user_account (username, password)
+VALUES ('account 31', 'account31');
+INSERT INTO user_account (username, password)
+VALUES ('account 32', 'account32');
+INSERT INTO user_account (username, password)
+VALUES ('account 33', 'account33');
+INSERT INTO user_account (username, password)
+VALUES ('account 34', 'account34');
+INSERT INTO user_account (username, password)
+VALUES ('account 35', 'account35');
+INSERT INTO user_account (username, password)
+VALUES ('account 36', 'account36');
+INSERT INTO user_account (username, password)
+VALUES ('account 37', 'account37');
+INSERT INTO user_account (username, password)
+VALUES ('account 38', 'account38');
+INSERT INTO user_account (username, password)
+VALUES ('account 39', 'account39');
+INSERT INTO user_account (username, password)
+VALUES ('account 40', 'account40');
+INSERT INTO user_account (username, password)
+VALUES ('account 41', 'account41');
+INSERT INTO user_account (username, password)
+VALUES ('account 42', 'account42');
+INSERT INTO user_account (username, password)
+VALUES ('account 43', 'account43');
+INSERT INTO user_account (username, password)
+VALUES ('account 44', 'account44');
+INSERT INTO user_account (username, password)
+VALUES ('account 45', 'account45');
+INSERT INTO user_account (username, password)
+VALUES ('account 46', 'account46');
+INSERT INTO user_account (username, password)
+VALUES ('account 47', 'account47');
+INSERT INTO user_account (username, password)
+VALUES ('account 48', 'account48');
+INSERT INTO user_account (username, password)
+VALUES ('account 49', 'account49');
+INSERT INTO user_account (username, password)
+VALUES ('account 50', 'account50');
+INSERT INTO user_account (username, password)
+VALUES ('account 51', 'account51');
+INSERT INTO user_account (username, password)
+VALUES ('account 52', 'account52');
+INSERT INTO user_account (username, password)
+VALUES ('account 53', 'account53');
+INSERT INTO user_account (username, password)
+VALUES ('account 54', 'account54');
+INSERT INTO user_account (username, password)
+VALUES ('account 55', 'account55');
+INSERT INTO user_account (username, password)
+VALUES ('account 56', 'account56');
+INSERT INTO user_account (username, password)
+VALUES ('account 57', 'account57');
+INSERT INTO user_account (username, password)
+VALUES ('account 58', 'account58');
+INSERT INTO user_account (username, password)
+VALUES ('account 59', 'account59');
+INSERT INTO user_account (username, password)
+VALUES ('account 60', 'account60');

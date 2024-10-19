@@ -7,14 +7,11 @@ CREATE OR REPLACE FUNCTION get_profile(input_id UUID)
         display_name TEXT,
         create_at    TIMESTAMP WITH TIME ZONE
     ) AS $$
-    DECLARE
-        user_json JSON;
     BEGIN
-        SELECT id, username, email, password, display_name, create_at
-        FROM user_account
-        WHERE id = input_id;
-
-        RETURN user_json;
+        RETURN QUERY 
+            SELECT id, username, email, password, display_name, create_at
+            FROM user_account
+            WHERE id = input_id;
     END;
     $$ LANGUAGE plpgsql;
 
@@ -142,7 +139,9 @@ CREATE OR REPLACE FUNCTION count_user_account()
     DECLARE
         value_count NUMERIC;
     BEGIN
-        SELECT COUNT(id) INTO value_count FROM user_account;
+        SELECT COUNT(id) INTO value_count
+        FROM user_account
+        WHERE status = 'active' OR status = 'pending';
 
         RETURN value_count;
     END;
