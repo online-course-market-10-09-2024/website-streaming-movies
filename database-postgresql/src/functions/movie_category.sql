@@ -1,7 +1,10 @@
 CREATE OR REPLACE FUNCTION create_movie_category(
         input_name TEXT
     )
-    RETURNS UUID
+    RETURNS TABLE (
+        id   UUID,
+        name TEXT
+    )
     AS $$
     DECLARE
         return_id UUID;
@@ -11,9 +14,14 @@ CREATE OR REPLACE FUNCTION create_movie_category(
         ) VALUES (
             input_name
         )
-        RETURNING id INTO return_id;
+        RETURNING movie_category.id INTO return_id;
 
-        RETURN return_id;
+        RETURN QUERY
+            SELECT
+                movie_category.id,
+                movie_category.name
+            FROM movie_category
+            WHERE movie_category.id = return_id;
     END;
     $$ LANGUAGE plpgsql;
 
@@ -26,13 +34,10 @@ CREATE OR REPLACE FUNCTION update_movie_category(
         name TEXT
     )
     AS $$
-    DECLARE
-        return_id UUID;
     BEGIN
         UPDATE movie_category
         SET name = input_name
-        WHERE movie_category.id = input_id
-        RETURNING movie_category.id INTO return_id;
+        WHERE movie_category.id = input_id;
 
         RETURN QUERY
             SELECT

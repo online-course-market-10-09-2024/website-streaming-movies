@@ -33,8 +33,10 @@ describe("MovieDirectorRoutes", () => {
       expect(response.statusCode).toBe(HttpStatus.OK)
       const result = response.json()
       expect(result.success).toBe(true)
-      expect(typeof result.data).toBe("string")
-      id = result.data
+      expect(typeof result.data.id).toBe("string")
+      expect(typeof result.data.name).toBe("string")
+      expect(result.data.name).toBe(input.name)
+      id = result.data.id
     })
   })
 

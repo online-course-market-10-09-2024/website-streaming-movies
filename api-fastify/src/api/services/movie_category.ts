@@ -10,8 +10,17 @@ export default class MovieCategoryService {
           "SELECT * FROM create_movie_category($1)",
           [input.name],
         )
-        const id: string = result.rows[0].create_movie_category
-        return { success: true, message: EnumMessage.CREATE_SUCCESS, data: id }
+
+        if (!Array.isArray(result.rows) || result.rows.length === 0)
+          throw new Error("Created failed, no movie category returned.")
+
+        const row = result.rows[0]
+        const movie_category: MovieCategory = {
+          id: row.id,
+          name: row.name,
+        }
+
+        return { success: true, message: EnumMessage.CREATE_SUCCESS, data: movie_category }
       })
       .catch((error) => this.handleError(error, EnumMessage.CREATE_FAILED))
   }
