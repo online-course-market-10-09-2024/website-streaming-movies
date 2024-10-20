@@ -53,9 +53,8 @@ test_wait_postgresql() {
 			;;
 
 		"service-moviedirector" )
-			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/services/movie_director.go /api-chi/cmd/services/movie_director_test.go
-			;;
+			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviedirector
+		;;
 
 		"service-useraccount" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-useraccount
@@ -71,9 +70,8 @@ test_wait_postgresql() {
 			;;
 
 		"route-moviedirector" )
-			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/routes/movie_director.go /api-chi/cmd/routes/movie_director_test.go
-			;;
+			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviedirector
+		;;
 
 		"route-movie" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
