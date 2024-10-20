@@ -114,7 +114,10 @@ describe("MovieCategoryService Integration Tests", () => {
       expect(result.success).toBe(true)
       expect(result.message).toBe(EnumMessage.CREATE_SUCCESS)
       expect(result.data).not.toBeUndefined()
-      currentId = result.data
+      expect(typeof result.data.id).toBe("string")
+      expect(typeof result.data.name).toBe("string")
+      expect(result.data.name).toBe(testCreated.name)
+      currentId = result.data.id
     })
   })
 

@@ -10,8 +10,17 @@ export default class MovieDirectorService {
           "SELECT * FROM create_movie_director($1)",
           [input.name],
         )
-        const id: string = result.rows[0].create_movie_director
-        return { success: true, message: EnumMessage.CREATE_SUCCESS, data: id }
+
+        if (!Array.isArray(result.rows) || result.rows.length === 0)
+          throw new Error("Create failed, no movie director returned.")
+
+        const row = result.rows[0]
+        const movie_director: MovieDirector = {
+          id: row.id,
+          name: row.name,
+        }
+
+        return { success: true, message: EnumMessage.CREATE_SUCCESS, data: movie_director }
       })
       .catch((error) => this.handleError(error, EnumMessage.CREATE_FAILED))
   }
@@ -25,7 +34,7 @@ export default class MovieDirectorService {
         )
 
         if (!Array.isArray(result.rows) || result.rows.length === 0)
-          throw new Error("Update failed, no movie category returned.")
+          throw new Error("Update failed, no movie director returned.")
 
         const row = result.rows[0]
         const movie_director: MovieDirector = {
