@@ -1,7 +1,10 @@
 CREATE OR REPLACE FUNCTION create_movie_director(
         input_name TEXT
     )
-    RETURNS UUID
+    RETURNS TABLE (
+        id   UUID,
+        name TEXT
+    )
     AS $$
     DECLARE
         return_id UUID;
@@ -11,9 +14,14 @@ CREATE OR REPLACE FUNCTION create_movie_director(
         ) VALUES (
             input_name
         )
-        RETURNING id INTO return_id;
+        RETURNING movie_director.id INTO return_id;
 
-        RETURN return_id;
+        RETURN QUERY
+            SELECT
+                movie_director.id,
+                movie_director.name
+            FROM movie_director
+            WHERE movie_director.id = return_id;
     END;
     $$ LANGUAGE plpgsql;
 
