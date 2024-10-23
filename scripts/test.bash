@@ -37,6 +37,10 @@ test_wait_postgresql() {
 			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviecategory
 		;;
 
+		"route-moviedependmoviecategory" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviedependmoviecategory
+		;;
+
 		"route-moviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviedirector
 		;;
@@ -49,6 +53,10 @@ test_wait_postgresql() {
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviecategory
 		;;
 
+		"service-moviedependmoviecategory" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviedependmoviecategory
+		;;
+
 		"service-moviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviedirector
 		;;
@@ -56,11 +64,6 @@ test_wait_postgresql() {
 		"service-movie" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-movie
 		;;
-
-		"service-moviedependmoviecategory" )
-			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/services/movie_depend_movie_category.go /api-chi/cmd/services/movie_depend_movie_category_test.go
-			;;
 
 		"service-moviedependmoviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
@@ -70,11 +73,6 @@ test_wait_postgresql() {
 		"service-useraccount" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-useraccount
 		;;
-
-		"route-moviedependmoviecategory" )
-			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/routes/movie_depend_movie_category.go /api-chi/cmd/routes/movie_depend_movie_category_test.go
-			;;
 	esac
 }
 
@@ -90,6 +88,9 @@ if [ $# -eq 1 ]; then
 		"api-route-moviecategory" )
 			test_wait_postgresql "route-moviecategory";;
 
+		"api-route-moviedependmoviecategory" )
+			test_wait_postgresql "route-moviedependmoviecategory";;
+
 		"api-route-moviedirector" )
 			test_wait_postgresql "route-moviedirector";;
 
@@ -99,23 +100,20 @@ if [ $# -eq 1 ]; then
 		"api-service-moviecategory" )
 			test_wait_postgresql "service-moviecategory" ;;
 
+		"api-service-moviedependmoviecategory" )
+			test_wait_postgresql "service-moviedependmoviecategory" ;;
+
 		"api-service-moviedirector" )
 			test_wait_postgresql "service-moviedirector" ;;
 
 		"api-service-movie" )
 			test_wait_postgresql "service-movie" ;;
 
-		"api-service-moviedependmoviecategory" )
-			test_wait_postgresql "service-moviedependmoviecategory" ;;
-
 		"api-service-moviedependmoviedirector" )
 			test_wait_postgresql "service-moviedependmoviedirector" ;;
 
 		"api-service-useraccount" )
 			test_wait_postgresql "service-useraccount" ;;
-
-		"api-route-moviedependmoviecategory" )
-			test_wait_postgresql "route-moviedependmoviecategory";;
 
 		* )
 			print_list ;;
