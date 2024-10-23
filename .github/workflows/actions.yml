@@ -36,6 +36,25 @@ jobs:
     - name: Test api-fastify route moviecategory
       run: sh scripts/test.bash api-route-moviecategory
 
+  test-api-fastify-route-movie:
+    name: Build and test docker api-fastify route movie
+    runs-on: ubuntu-24.04
+    needs: [ build-dev ]
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    - name: Setup Docker, Docker compose and build start
+      uses: hoverkraft-tech/compose-action@v2.0.1
+      with:
+        services: |
+          database-postgresql
+          api-fastify
+
+    - name: Test api-fastify route movie
+      run: sh scripts/test.bash api-route-movie
+
   test-api-fastify-route-moviedirector:
     name: Build and test docker api-fastify route moviedirector
     runs-on: ubuntu-24.04
@@ -92,6 +111,25 @@ jobs:
 
     - name: Test api-fastify service moviedirector
       run: sh scripts/test.bash api-service-moviedirector
+
+  test-api-fastify-service-movie:
+    name: Build and test docker api-fastify service movie
+    runs-on: ubuntu-24.04
+    needs: [ build-dev ]
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    - name: Setup Docker, Docker compose and build start
+      uses: hoverkraft-tech/compose-action@v2.0.1
+      with:
+        services: |
+          database-postgresql
+          api-fastify
+
+    - name: Test api-fastify service movie
+      run: sh scripts/test.bash api-service-movie
 
   test-api-fastify-service-useraccount:
     name: Build and test docker api-fastify service useraccount

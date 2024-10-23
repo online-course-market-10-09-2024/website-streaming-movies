@@ -33,13 +33,28 @@ test_wait_postgresql() {
 	echo "PostgreSQL is ready after $attempt_count attempts. Running the test..."
 
 	case $1 in
-		"service-movie" )
-			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/services/movie.go /api-chi/cmd/services/movie_test.go
-			;;
+		"route-moviecategory" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviecategory
+		;;
+
+		"route-moviedirector" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviedirector
+		;;
+
+		"route-movie" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-route-movie
+		;;
 
 		"service-moviecategory" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviecategory
+		;;
+
+		"service-moviedirector" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviedirector
+		;;
+
+		"service-movie" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-service-movie
 		;;
 
 		"service-moviedependmoviecategory" )
@@ -52,30 +67,13 @@ test_wait_postgresql() {
 				/api-chi/cmd/services/movie_depend_movie_director.go /api-chi/cmd/services/movie_depend_movie_director_test.go
 			;;
 
-		"service-moviedirector" )
-			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviedirector
-		;;
-
 		"service-useraccount" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-useraccount
-		;;
-
-		"route-moviecategory" )
-			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviecategory
 		;;
 
 		"route-moviedependmoviecategory" )
 			docker exec ${PROJECT_API_CONTAINER} go test -v \
 				/api-chi/cmd/routes/movie_depend_movie_category.go /api-chi/cmd/routes/movie_depend_movie_category_test.go
-			;;
-
-		"route-moviedirector" )
-			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviedirector
-		;;
-
-		"route-movie" )
-			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/routes/movie.go /api-chi/cmd/routes/movie_test.go
 			;;
 	esac
 }
@@ -89,29 +87,8 @@ print_list() {
 # Main script
 if [ $# -eq 1 ]; then
 	case "$1" in
-		"api-service-movie" )
-			test_wait_postgresql "service-movie" ;;
-
-		"api-service-moviecategory" )
-			test_wait_postgresql "service-moviecategory" ;;
-
-		"api-service-moviedependmoviecategory" )
-			test_wait_postgresql "service-moviedependmoviecategory" ;;
-
-		"api-service-moviedependmoviedirector" )
-			test_wait_postgresql "service-moviedependmoviedirector" ;;
-
-		"api-service-moviedirector" )
-			test_wait_postgresql "service-moviedirector" ;;
-
-		"api-service-useraccount" )
-			test_wait_postgresql "service-useraccount" ;;
-
 		"api-route-moviecategory" )
 			test_wait_postgresql "route-moviecategory";;
-
-		"api-route-moviedependmoviecategory" )
-			test_wait_postgresql "route-moviedependmoviecategory";;
 
 		"api-route-moviedirector" )
 			test_wait_postgresql "route-moviedirector";;
@@ -119,11 +96,26 @@ if [ $# -eq 1 ]; then
 		"api-route-movie" )
 			test_wait_postgresql "route-movie";;
 
-		"coverage" )
-			docker exec ${PROJECT_API_CONTAINER} go test -coverprofile=coverage.out ./...
-			docker exec ${PROJECT_API_CONTAINER} go tool cover -html=coverage.out -o ./coverage.html
-			docker cp ${PROJECT_API_CONTAINER}:/api-chi/coverage.html ./coverage.html
-			;;
+		"api-service-moviecategory" )
+			test_wait_postgresql "service-moviecategory" ;;
+
+		"api-service-moviedirector" )
+			test_wait_postgresql "service-moviedirector" ;;
+
+		"api-service-movie" )
+			test_wait_postgresql "service-movie" ;;
+
+		"api-service-moviedependmoviecategory" )
+			test_wait_postgresql "service-moviedependmoviecategory" ;;
+
+		"api-service-moviedependmoviedirector" )
+			test_wait_postgresql "service-moviedependmoviedirector" ;;
+
+		"api-service-useraccount" )
+			test_wait_postgresql "service-useraccount" ;;
+
+		"api-route-moviedependmoviecategory" )
+			test_wait_postgresql "route-moviedependmoviecategory";;
 
 		* )
 			print_list ;;
