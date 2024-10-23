@@ -5,7 +5,14 @@ CREATE OR REPLACE FUNCTION create_movie(
         input_trailer_video_url TEXT,
         input_description       TEXT
     )
-    RETURNS UUID
+    RETURNS TABLE (
+        id                UUID,
+        name              TEXT,
+        initial_date      DATE,
+        thumbnail_image   TEXT,
+        trailer_video_url TEXT,
+        description       TEXT
+    )
     AS $$
     DECLARE
         return_id UUID;
@@ -23,9 +30,18 @@ CREATE OR REPLACE FUNCTION create_movie(
             input_trailer_video_url,
             input_description
         )
-        RETURNING id INTO return_id;
+        RETURNING movie.id INTO return_id;
 
-        RETURN return_id;
+        RETURN QUERY
+            SELECT
+                movie.id,
+                movie.name,
+                movie.initial_date,
+                movie.thumbnail_image,
+                movie.trailer_video_url,
+                movie.description
+            FROM movie
+            WHERE movie.id = return_id;
     END;
     $$ LANGUAGE plpgsql;
 
@@ -157,8 +173,12 @@ CREATE OR REPLACE FUNCTION get_all_movie(
         input_page   NUMERIC
     )
     RETURNS TABLE (
-        id   UUID,
-        name TEXT
+        id                UUID,
+        name              TEXT,
+        initial_date      DATE,
+        thumbnail_image   TEXT,
+        trailer_video_url TEXT,
+        description       TEXT
     )
     AS $$
     DECLARE
@@ -190,7 +210,13 @@ CREATE OR REPLACE FUNCTION get_all_movie(
         END IF;
 
         RETURN QUERY
-            SELECT movie.id, movie.name
+            SELECT
+                movie.id,
+                movie.name,
+                movie.initial_date,
+                movie.thumbnail_image,
+                movie.trailer_video_url,
+                movie.description
             FROM movie
             WHERE movie.name ILIKE '%' || input_search || '%'
             LIMIT input_limit
