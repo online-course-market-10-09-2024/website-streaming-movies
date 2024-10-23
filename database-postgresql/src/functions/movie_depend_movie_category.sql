@@ -2,7 +2,11 @@ CREATE OR REPLACE FUNCTION create_movie_depend_movie_category (
         input_movie_category_id UUID,
         input_movie_id          UUID
     )
-    RETURNS UUID
+    RETURNS TABLE (
+        id                UUID,
+        movie_category_id UUID,
+        movie_id          UUID
+    )
     AS $$
     DECLARE
         return_id UUID;
@@ -14,9 +18,15 @@ CREATE OR REPLACE FUNCTION create_movie_depend_movie_category (
             input_movie_category_id,
             input_movie_id
         )
-        RETURNING id INTO return_id;
+        RETURNING movie_depend_movie_category.id INTO return_id;
 
-        RETURN return_id;
+        RETURN QUERY
+            SELECT
+                movie_depend_movie_category.id,
+                movie_depend_movie_category.movie_category_id,
+                movie_depend_movie_category.movie_id
+            FROM movie_depend_movie_category
+            WHERE movie_depend_movie_category.id = return_id;
     END;
     $$ LANGUAGE plpgsql;
 
@@ -59,7 +69,7 @@ BEGIN
         FROM movie_depend_movie_category
         WHERE movie_category_id = NEW.movie_category_id AND movie_id = NEW.movie_id
     ) THEN
-        RAISE EXCEPTION 'Can''t have more than 1 movie_depend_movie_category with the same values!';
+        RAISE EXCEPTION 'Can''t have more than 1 movie_depend_movie_category with the same value!';
     END IF;
 
     RETURN NEW;
