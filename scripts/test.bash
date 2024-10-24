@@ -41,6 +41,10 @@ test_wait_postgresql() {
 			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviedependmoviecategory
 		;;
 
+		"route-moviedependmoviedirector" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviedependmoviedirector
+		;;
+
 		"route-moviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-route-moviedirector
 		;;
@@ -57,6 +61,10 @@ test_wait_postgresql() {
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviedependmoviecategory
 		;;
 
+		"service-moviedependmoviedirector" )
+			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviedependmoviedirector
+		;;
+
 		"service-moviedirector" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-moviedirector
 		;;
@@ -64,11 +72,6 @@ test_wait_postgresql() {
 		"service-movie" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-movie
 		;;
-
-		"service-moviedependmoviedirector" )
-			docker exec ${PROJECT_API_CONTAINER} go test -v \
-				/api-chi/cmd/services/movie_depend_movie_director.go /api-chi/cmd/services/movie_depend_movie_director_test.go
-			;;
 
 		"service-useraccount" )
 			docker exec ${PROJECT_API_CONTAINER} npm run test-service-useraccount
@@ -91,6 +94,9 @@ if [ $# -eq 1 ]; then
 		"api-route-moviedependmoviecategory" )
 			test_wait_postgresql "route-moviedependmoviecategory";;
 
+		"api-route-moviedependmoviedirector" )
+			test_wait_postgresql "route-moviedependmoviedirector";;
+
 		"api-route-moviedirector" )
 			test_wait_postgresql "route-moviedirector";;
 
@@ -103,14 +109,14 @@ if [ $# -eq 1 ]; then
 		"api-service-moviedependmoviecategory" )
 			test_wait_postgresql "service-moviedependmoviecategory" ;;
 
+		"api-service-moviedependmoviedirector" )
+			test_wait_postgresql "service-moviedependmoviedirector" ;;
+
 		"api-service-moviedirector" )
 			test_wait_postgresql "service-moviedirector" ;;
 
 		"api-service-movie" )
 			test_wait_postgresql "service-movie" ;;
-
-		"api-service-moviedependmoviedirector" )
-			test_wait_postgresql "service-moviedependmoviedirector" ;;
 
 		"api-service-useraccount" )
 			test_wait_postgresql "service-useraccount" ;;
