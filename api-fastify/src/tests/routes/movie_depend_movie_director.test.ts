@@ -1,15 +1,15 @@
 import fastify from "fastify"
-import MovieDependMovieCategoryRoutes from "@/api/routes/movie_depend_movie_category"
-import { MovieDependMovieCategory } from "@/types/movie_depend_movie_category"
+import MovieDependMovieDirectorRoutes from "@/api/routes/movie_depend_movie_director"
+import { MovieDependMovieDirector } from "@/types/movie_depend_movie_director"
 import { HttpStatus } from "@/types/http_status"
 
-describe("MovieCategoryRoutes", () => {
+describe("MovieDirectorRoutes", () => {
   let app: ReturnType<typeof fastify>
   let id: string = ""
 
   beforeAll(async () => {
     app = fastify()
-    app.register(MovieDependMovieCategoryRoutes)
+    app.register(MovieDependMovieDirectorRoutes)
     await app.ready()
   })
 
@@ -17,17 +17,17 @@ describe("MovieCategoryRoutes", () => {
     await app.close()
   })
 
-  describe("POST /movie-depend-movie-categories", () => {
-    it("should create a movie depend movie category", async () => {
-      const input: MovieDependMovieCategory = {
+  describe("POST /movie-depend-movie-directors", () => {
+    it("should create a movie depend movie director", async () => {
+      const input: MovieDependMovieDirector = {
         id: "",
-        movieCategoryId: "360d60a6-3f3a-4c00-927a-04aa35410acc",
-        movieId: "0bc66ff1-15ec-4d54-8830-1baf807b8091",
+        movieDirectorId: "436d3a76-c367-403d-bc98-c27fd0ae0413",
+        movieId: "2292fde6-3594-4924-b6be-d5336d7882ec",
       }
 
       const response = await app.inject({
         method: "POST",
-        url: "/movie-depend-movie-categories",
+        url: "/movie-depend-movie-directors",
         payload: input,
       })
 
@@ -35,19 +35,19 @@ describe("MovieCategoryRoutes", () => {
       const result = response.json()
       expect(result.success).toBe(true)
       expect(typeof result.data.id).toBe("string")
-      expect(typeof result.data.movieCategoryId).toBe("string")
+      expect(typeof result.data.movieDirectorId).toBe("string")
       expect(typeof result.data.movieId).toBe("string")
-      expect(result.data.movieCategoryId).toBe(input.movieCategoryId)
+      expect(result.data.movieDirectorId).toBe(input.movieDirectorId)
       expect(result.data.movieId).toBe(input.movieId)
       id = result.data.id
     })
   })
 
-  describe("DELETE /movie-depend-movie-categories/:id", () => {
-    it("should remove a movie depend movie category", async () => {
+  describe("DELETE /movie-depend-movie-directors/:id", () => {
+    it("should remove a movie depend movie director", async () => {
       const response = await app.inject({
         method: "DELETE",
-        url: `/movie-depend-movie-categories/${id}`,
+        url: `/movie-depend-movie-directors/${id}`,
       })
 
       expect(response.statusCode).toBe(HttpStatus.OK)

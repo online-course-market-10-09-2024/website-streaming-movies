@@ -5,11 +5,13 @@
   "scripts": {
     "test-route-moviecategory": "jest src/tests/routes/movie_category.test.ts --verbose",
     "test-route-moviedependmoviecategory": "jest src/tests/routes/movie_depend_movie_category.test.ts --verbose",
+    "test-route-moviedependmoviedirector": "jest src/tests/routes/movie_depend_movie_director.test.ts --verbose",
     "test-route-moviedirector": "jest src/tests/routes/movie_director.test.ts --verbose",
     "test-route-movie": "jest src/tests/routes/movie.test.ts --verbose",
     "test-service-course": "jest src/tests/services/course.test.ts --verbose",
     "test-service-moviecategory": "jest src/tests/services/movie_category.test.ts --verbose",
     "test-service-moviedependmoviecategory": "jest src/tests/services/movie_depend_movie_category.test.ts --verbose",
+    "test-service-moviedependmoviedirector": "jest src/tests/services/movie_depend_movie_director.test.ts --verbose",
     "test-service-moviedirector": "jest src/tests/services/movie_director.test.ts --verbose",
     "test-service-movie": "jest src/tests/services/movie.test.ts --verbose",
     "test-service-useraccount": "jest src/tests/services/user_account.test.ts --verbose",
