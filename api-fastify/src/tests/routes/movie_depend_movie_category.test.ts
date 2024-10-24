@@ -18,7 +18,7 @@ describe("MovieCategoryRoutes", () => {
   })
 
   describe("POST /movie-depend-movie-categories", () => {
-    it("should create a movie category", async () => {
+    it("should create a movie depend movie category", async () => {
       const input: MovieDependMovieCategory = {
         id: "",
         movieCategoryId: "360d60a6-3f3a-4c00-927a-04aa35410acc",
@@ -44,7 +44,7 @@ describe("MovieCategoryRoutes", () => {
   })
 
   describe("DELETE /movie-depend-movie-categories/:id", () => {
-    it("should remove a movie category", async () => {
+    it("should remove a movie depend movie category", async () => {
       const response = await app.inject({
         method: "DELETE",
         url: `/movie-depend-movie-categories/${id}`,
