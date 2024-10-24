@@ -2,7 +2,11 @@ CREATE OR REPLACE FUNCTION create_movie_depend_movie_director (
         input_movie_director_id UUID,
         input_movie_id          UUID
     )
-    RETURNS UUID
+    RETURNS TABLE (
+        id                UUID,
+        movie_director_id UUID,
+        movie_id          UUID
+    )
     AS $$
     DECLARE
         return_id UUID;
@@ -14,9 +18,15 @@ CREATE OR REPLACE FUNCTION create_movie_depend_movie_director (
             input_movie_director_id,
             input_movie_id
         )
-        RETURNING id INTO return_id;
+        RETURNING movie_depend_movie_director.id INTO return_id;
 
-        RETURN return_id;
+        RETURN QUERY
+            SELECT
+                movie_depend_movie_director.id,
+                movie_depend_movie_director.movie_director_id,
+                movie_depend_movie_director.movie_id
+            FROM movie_depend_movie_director
+            WHERE movie_depend_movie_director.id = return_id;
     END;
     $$ LANGUAGE plpgsql;
 
