@@ -1,4 +1,5 @@
 import React from "react";
+import { DataTableAdmin } from "@/components/tables/DataTableAdmin";
 
 type Props = {
   currentOption: string
@@ -11,22 +12,8 @@ export default function AdminDashboard(props: Props): JSX.Element {
         <h2 className="text-xl font-bold mb-4">
           {props.currentOption.charAt(0).toUpperCase() + props.currentOption.slice(1)}
         </h2>
-        <div className="flex gap-2">
-          {[...new Array(4)].map((_, i) => (
-            <div
-              key={"first-array" + i}
-              className="h-20 w-full rounded-lg bg-gray-100 dark:bg-neutral-800 animate-pulse"
-            ></div>
-          ))}
-        </div>
-        <div className="flex gap-2 flex-1">
-          {[...new Array(2)].map((_, i) => (
-            <div
-              key={"second-array" + i}
-              className="h-full w-full rounded-lg bg-gray-100 dark:bg-neutral-800 animate-pulse"
-            ></div>
-          ))}
-        </div>
+        
+        <DataTableAdmin />
       </div>
     </div>
   );
