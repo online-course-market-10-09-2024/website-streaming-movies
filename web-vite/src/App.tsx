@@ -1,9 +1,8 @@
-import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { FloatingNavView } from "@/components/ui/nav/FloatingNavView";
 import { Dashboard } from "@/components/dashBoard/dashboard";
-import { SidebarAdmin } from '@/components/SidebarAdmin';
+import AdminPage from './pages/AdminPage';
 
 // Home page component that includes the original App content
 const HomePage = () => {
@@ -12,13 +11,6 @@ const HomePage = () => {
       <FloatingNavView />
       <Dashboard />
     </>
-  );
-};
-
-// Empty Admin page component
-const AdminPage = () => {
-  return (
-    <SidebarAdmin />
   );
 };
 
