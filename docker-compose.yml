@@ -39,6 +39,8 @@ services:
   web-vite:
     build:
       dockerfile: ./docker/web-vite/Dockerfile
+    environment:
+      VITE_API_BASE_URL: ${VITE_API_BASE_URL}
     ports:
       - '${WEB_PUBLIC_PORT}:${WEB_PORT}'
     networks:
