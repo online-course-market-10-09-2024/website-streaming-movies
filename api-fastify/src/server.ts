@@ -37,7 +37,7 @@ server.addHook('onResponse', async (request: FastifyRequest, reply: FastifyReply
     url: request.url,
     method: request.method,
     statusCode: reply.statusCode,
-    responseTime: reply.getResponseTime(),
+    responseTime: reply.elapsedTime,
   }, 'request completed')
 })
 
