@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -17,36 +17,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "../ui/input";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import { MovieCategory } from "@/libs/movie_category";
 
-// Types
-export type MovieCategory = {
-  id: string;
-  name: string;
-};
-
-// Sample data
-const data: MovieCategory[] = [
-  {
-    id: "action01",
-    name: "Action",
-  },
-  {
-    id: "comedy02",
-    name: "Comedy",
-  },
-  {
-    id: "drama03",
-    name: "Drama",
-  },
-  {
-    id: "scifi04",
-    name: "Science Fiction",
-  },
-  {
-    id: "horror05",
-    name: "Horror",
-  },
-];
+type Props = {
+  data: MovieCategory[]
+}
 
 // Column definitions
 export const columns: ColumnDef<MovieCategory>[] = [
@@ -127,14 +102,14 @@ export const columns: ColumnDef<MovieCategory>[] = [
 ];
 
 // Main component
-export function DataTableAdmin() {
+export function DataTableAdmin(props: Props) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data,
+    data: props.data,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

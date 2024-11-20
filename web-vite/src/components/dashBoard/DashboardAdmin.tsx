@@ -3,6 +3,7 @@ import { DataTableAdmin } from "@/components/tables/DataTableAdmin";
 
 type Props = {
   currentOption: string
+  data: any
 }
 
 export default function AdminDashboard(props: Props): JSX.Element {
@@ -12,8 +13,8 @@ export default function AdminDashboard(props: Props): JSX.Element {
         <h2 className="text-xl font-bold mb-4">
           {props.currentOption.charAt(0).toUpperCase() + props.currentOption.slice(1)}
         </h2>
-        
-        <DataTableAdmin />
+
+        <DataTableAdmin data={props.data} />
       </div>
     </div>
   );
