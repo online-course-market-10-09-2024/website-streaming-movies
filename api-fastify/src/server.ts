@@ -55,7 +55,7 @@ server.addHook('onError', async (request: FastifyRequest, reply: FastifyReply, e
 
 // Libraries routes and middlewares
 server.register(cors, {
-  origin: ["http://0.0.0.0:5173"],
+  origin: ["*"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 })
