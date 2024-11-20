@@ -11,6 +11,10 @@ export default function AdminPage(): JSX.Element {
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState([]);
 
+  const getMaxPage = (): number => {
+    return Math.ceil(count / limit);
+  }
+
   console.log(import.meta.env);
   console.log(import.meta.env.VITE_API_BASE_URL);
 
@@ -48,7 +52,7 @@ export default function AdminPage(): JSX.Element {
     <div className="flex">
       <SidebarAdmin currentOption={currentOption} setCurrentOption={setCurrentOption} />
 
-      <DashboardAdmin currentOption={currentOption} data={data} />
+      <DashboardAdmin currentOption={currentOption} page={page} maxPage={getMaxPage()} data={data} />
     </div>
   )
 }

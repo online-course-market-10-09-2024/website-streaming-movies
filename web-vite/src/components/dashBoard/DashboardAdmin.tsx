@@ -3,6 +3,8 @@ import { DataTableAdmin } from "@/components/tables/DataTableAdmin";
 
 type Props = {
   currentOption: string
+  page: number
+  maxPage: number
   data: any
 }
 
@@ -14,7 +16,7 @@ export default function AdminDashboard(props: Props): JSX.Element {
           {props.currentOption.charAt(0).toUpperCase() + props.currentOption.slice(1)}
         </h2>
 
-        <DataTableAdmin data={props.data} />
+        <DataTableAdmin page={props.page} maxPage={props.maxPage} data={props.data} />
       </div>
     </div>
   );
