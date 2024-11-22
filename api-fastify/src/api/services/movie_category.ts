@@ -68,11 +68,12 @@ export default class MovieCategoryService {
       .catch((error) => this.handleError(error, EnumMessage.REMOVE_FAILED))
   }
 
-  public async Count(): Promise<ReturnMessage> {
+  public async Count(search: string): Promise<ReturnMessage> {
     return pool
       .withClient(async (client) => {
         const result = await client.query(
-          "SELECT * FROM count_movie_category()",
+          "SELECT * FROM count_movie_category($1)",
+          [search],
         )
         const data: number = parseInt(result.rows[0].count_movie_category)
         return { success: true, message: EnumMessage.GET_SUCCESS, data: data }

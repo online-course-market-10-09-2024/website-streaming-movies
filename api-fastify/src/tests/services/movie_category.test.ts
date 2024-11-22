@@ -14,7 +14,7 @@ describe("MovieCategoryService Integration Tests", () => {
 
   describe("Count", () => {
     it("should return the count of movie categories", async () => {
-      const result: ReturnMessage = await service.Count()
+      const result: ReturnMessage = await service.Count("")
       expect(result.success).toBe(true)
       expect(result.message).toBe(EnumMessage.GET_SUCCESS)
       expect(typeof result.data).toBe("number")

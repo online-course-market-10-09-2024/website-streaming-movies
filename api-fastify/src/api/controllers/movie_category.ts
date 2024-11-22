@@ -37,10 +37,12 @@ export default class MovieCategoryController {
   }
 
   public async Count(
-    request: FastifyRequest,
+    request: FastifyRequest<{
+      Querystring: { search: string; limit: number; page: number }
+}   >,
     reply: FastifyReply,
   ): Promise<void> {
-    const result = await this.service.Count()
+    const result = await this.service.Count(request.query.search)
     this.sendResponse(reply, result)
   }
 

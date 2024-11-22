@@ -77,13 +77,14 @@ describe("MovieCategoryRoutes", () => {
     it("should count movie categories", async () => {
       const response = await app.inject({
         method: "GET",
-        url: "/movie-categories/count",
+        url: "/movie-categories/count?search=",
       })
 
       expect(response.statusCode).toBe(HttpStatus.OK)
       const result = response.json()
       expect(result.success).toBe(true)
       expect(typeof result.data).toBe("number")
+      expect(result.data).toBeGreaterThan(0)
     })
   })
 
