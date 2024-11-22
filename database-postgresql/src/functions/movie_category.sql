@@ -64,14 +64,17 @@ CREATE OR REPLACE FUNCTION remove_movie_category(
     END;
     $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION count_movie_category()
+CREATE OR REPLACE FUNCTION count_movie_category(
+        input_search TEXT
+    )
     RETURNS NUMERIC
     AS $$
     DECLARE
         value_count NUMERIC;
     BEGIN
         SELECT COUNT(id) INTO value_count
-        FROM movie_category;
+        FROM movie_category
+        WHERE movie_category.name ILIKE '%' || input_search || '%';
 
         RETURN value_count;
     END;
@@ -92,7 +95,7 @@ CREATE OR REPLACE FUNCTION get_all_movie_category(
         max_page    NUMERIC;
     BEGIN
         -- Get count
-        SELECT count_movie_category() INTO value_count;
+        SELECT count_movie_category(input_search) INTO value_count;
 
         -- Set default limit range
         IF input_limit < 10 THEN
