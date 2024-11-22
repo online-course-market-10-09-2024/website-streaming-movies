@@ -23,6 +23,10 @@ import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, Pagi
 type Props = {
   page: number
   maxPage: number
+  handleFirstPage: () => void
+  handlePreviousPage: () => void
+  handleNextPage: () => void
+  handleLastPage: () => void
   data: MovieCategory[]
 }
 
@@ -164,6 +168,7 @@ export function DataTableAdmin(props: Props) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -212,32 +217,53 @@ export function DataTableAdmin(props: Props) {
           </TableBody>
         </Table>
       </div>
+
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-gray-500">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
+      </div>
 
-        <Pagination>
-          <PaginationContent>
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious className="hover:cursor-pointer" onClick={() => props.handlePreviousPage()}  />
+          </PaginationItem>
+
+          {props.page !== 1 &&
             <PaginationItem>
-              <PaginationPrevious />
+              <PaginationLink className="hover:cursor-pointer" onClick={() => props.handleFirstPage()}>1</PaginationLink>
             </PaginationItem>
-            <PaginationItem>
-              <PaginationLink>{props.page}</PaginationLink>
-            </PaginationItem>
+          }
+
+          {props.page > 2 &&
             <PaginationItem>
               <PaginationEllipsis />
             </PaginationItem>
+          }
+
+          <PaginationItem>
+            <PaginationLink className="bg-black text-white">{props.page}</PaginationLink>
+          </PaginationItem>
+
+          {props.page < props.maxPage - 1 &&
             <PaginationItem>
-              <PaginationLink>{props.maxPage}</PaginationLink>
+              <PaginationEllipsis />
             </PaginationItem>
+          }
+
+          {props.page !== props.maxPage &&
             <PaginationItem>
-              <PaginationNext />
+              <PaginationLink className="hover:cursor-pointer" onClick={() => props.handleLastPage()}>{props.maxPage}</PaginationLink>
             </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </div>
+          }
+
+          <PaginationItem>
+            <PaginationNext className="hover:cursor-pointer" onClick={() => props.handleNextPage()} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
     </div>
   );
 }

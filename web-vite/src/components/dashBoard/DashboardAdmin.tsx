@@ -5,6 +5,10 @@ type Props = {
   currentOption: string
   page: number
   maxPage: number
+  handleFirstPage: () => void
+  handlePreviousPage: () => void
+  handleNextPage: () => void
+  handleLastPage: () => void
   data: any
 }
 
@@ -16,7 +20,11 @@ export default function AdminDashboard(props: Props): JSX.Element {
           {props.currentOption.charAt(0).toUpperCase() + props.currentOption.slice(1)}
         </h2>
 
-        <DataTableAdmin page={props.page} maxPage={props.maxPage} data={props.data} />
+        <DataTableAdmin
+          page={props.page} maxPage={props.maxPage}
+          handleFirstPage={props.handleFirstPage} handlePreviousPage={props.handlePreviousPage} handleNextPage={props.handleNextPage} handleLastPage={props.handleLastPage}
+          data={props.data}
+        />
       </div>
     </div>
   );
