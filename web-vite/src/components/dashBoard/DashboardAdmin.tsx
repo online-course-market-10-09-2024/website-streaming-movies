@@ -3,6 +3,7 @@ import { DataTableAdmin } from "@/components/tables/DataTableAdmin";
 
 type Props = {
   currentOption: string
+  handleSearch: (text: string) => void
   page: number
   maxPage: number
   handleFirstPage: () => void
@@ -21,6 +22,7 @@ export default function AdminDashboard(props: Props): JSX.Element {
         </h2>
 
         <DataTableAdmin
+          handleSearch={props.handleSearch}
           page={props.page} maxPage={props.maxPage}
           handleFirstPage={props.handleFirstPage} handlePreviousPage={props.handlePreviousPage} handleNextPage={props.handleNextPage} handleLastPage={props.handleLastPage}
           data={props.data}

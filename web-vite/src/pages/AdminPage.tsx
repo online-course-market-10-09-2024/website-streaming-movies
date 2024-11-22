@@ -11,6 +11,9 @@ export default function AdminPage(): JSX.Element {
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState([]);
 
+  const handleSearch = (text: string): void => {
+    setSearch(text);
+  }
   const getMaxPage = (): number => {
     return Math.ceil(count / limit);
   }
@@ -47,10 +50,12 @@ export default function AdminPage(): JSX.Element {
     setPage(getMaxPage());
   }
 
-  console.log(page);
+  console.log(search);
+  console.log(data);
+  console.log(count);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movie-categories?search=&limit=10&page=${page}`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movie-categories?search=${search}&limit=10&page=${page}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -64,8 +69,9 @@ export default function AdminPage(): JSX.Element {
       console.error(error);
     });
 
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movie-categories/count?search=`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movie-categories/count?search=${search}`)
     .then((response) => {
+      console.log("count: ",search)
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -77,13 +83,16 @@ export default function AdminPage(): JSX.Element {
     .catch((error) => {
       console.error(error);
     });
-  }, [page]);
+  }, [page, search]);
 
   return (
     <div className="flex">
       <SidebarAdmin currentOption={currentOption} setCurrentOption={setCurrentOption} />
 
-      <DashboardAdmin currentOption={currentOption} page={page} maxPage={getMaxPage()}
+      <DashboardAdmin
+        currentOption={currentOption}
+        handleSearch={handleSearch}
+        page={page} maxPage={getMaxPage()}
         handleFirstPage={handleFirstPage} handlePreviousPage={handlePreviousPage} handleNextPage={handleNextPage} handleLastPage={handleLastPage}
         data={data} />
     </div>

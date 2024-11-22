@@ -21,6 +21,7 @@ import { MovieCategory } from "@/libs/movie_category";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "../ui/pagination";
 
 type Props = {
+  handleSearch: (text: string) => void
   page: number
   maxPage: number
   handleFirstPage: () => void
@@ -110,6 +111,7 @@ export const columns: ColumnDef<MovieCategory>[] = [
 
 // Main component
 export function DataTableAdmin(props: Props) {
+  const [searchInput, setSearchInput] = useState<string>("");
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -139,12 +141,16 @@ export function DataTableAdmin(props: Props) {
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter category names..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
-          }
+          value={searchInput}
+          onChange={(event) => setSearchInput(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              props.handleSearch(searchInput);
+            }
+          }}
           className="max-w-sm"
         />
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
