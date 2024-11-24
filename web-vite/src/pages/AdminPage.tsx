@@ -1,9 +1,10 @@
 import DashboardAdmin from "@/components/dashBoard/DashboardAdmin";
 import { SidebarAdmin } from "@/components/SidebarAdmin";
+import { CurrentOptionEnum } from "@/libs/enum";
 import { useEffect, useState } from "react";
 
 export default function AdminPage(): JSX.Element {
-  const [currentOption, setCurrentOption] = useState("dashboard");
+  const [currentOption, setCurrentOption] = useState(CurrentOptionEnum.MOVIE_CATEGORY);
   const [search, setSearch] = useState<string>("");
   const [limit, setLimit] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
@@ -49,13 +50,16 @@ export default function AdminPage(): JSX.Element {
   const handleLastPage = (): void => {
     setPage(getMaxPage());
   }
+  const handleCurrentOption = (option: CurrentOptionEnum): void => {
+    setCurrentOption(option)
+  }
 
   console.log(search);
   console.log(data);
   console.log(count);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movie-categories?search=${search}&limit=10&page=${page}`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/${currentOption}?search=${search}&limit=10&page=${page}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -69,7 +73,7 @@ export default function AdminPage(): JSX.Element {
       console.error(error);
     });
 
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movie-categories/count?search=${search}`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/${currentOption}/count?search=${search}`)
     .then((response) => {
       console.log("count: ",search)
       if (!response.ok) {
@@ -83,11 +87,11 @@ export default function AdminPage(): JSX.Element {
     .catch((error) => {
       console.error(error);
     });
-  }, [page, search]);
+  }, [currentOption, page, search]);
 
   return (
     <div className="flex">
-      <SidebarAdmin currentOption={currentOption} setCurrentOption={setCurrentOption} />
+      <SidebarAdmin currentOption={currentOption} handleCurrentOption={handleCurrentOption} />
 
       <DashboardAdmin
         currentOption={currentOption}

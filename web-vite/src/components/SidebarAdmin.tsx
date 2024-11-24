@@ -8,10 +8,11 @@ import {
 import { motion } from "framer-motion";
 import CategoryIcon from "./icons/CategoryIcon";
 import UserIcon from "./icons/UserIcon";
+import { CurrentOptionEnum } from "@/libs/enum";
 
 type Props = {
   currentOption: string
-  setCurrentOption: (input: string) => void
+  handleCurrentOption: (option: CurrentOptionEnum) => void
 }
 
 export function SidebarAdmin(props: Props) {
@@ -22,6 +23,7 @@ export function SidebarAdmin(props: Props) {
       icon: (
         <CategoryIcon className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      optionData: CurrentOptionEnum.MOVIE_CATEGORY,
     },
     {
       label: "Movie Director",
@@ -29,6 +31,15 @@ export function SidebarAdmin(props: Props) {
       icon: (
         <UserIcon className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      optionData: CurrentOptionEnum.MOVIE_DIRECTOR,
+    },
+    {
+      label: "Movie",
+      id: "Movie",
+      icon: (
+        <UserIcon className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+      optionData: CurrentOptionEnum.MOVIE,
     },
     {
       label: "Settings",
@@ -48,9 +59,6 @@ export function SidebarAdmin(props: Props) {
 
   const [open, setOpen] = useState(false);
 
-  const handleNavigation = (pageId: string) => {
-    props.setCurrentOption(pageId);
-  };
 
   return (
     <div className="h-screen bg-gray-100 dark:bg-neutral-800">
@@ -63,7 +71,11 @@ export function SidebarAdmin(props: Props) {
                 {links.map((link, idx) => (
                   <div
                     key={idx}
-                    onClick={() => handleNavigation(link.id)}
+                    onClick={() => {
+                      if (link.optionData !== undefined) {
+                        props.handleCurrentOption(link.optionData);
+                      }
+                    }}
                     className="cursor-pointer"
                   >
                     <SidebarLink link={{ ...link, href: "#" }} />
