@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { VideoView } from './VideoView';
 import { motion } from 'framer-motion';
 import { IconPlayerPlay, IconX } from '@tabler/icons-react';
+import { useSearchParams } from "react-router-dom";
+import { SparklesSearchBarView } from "../sparkle/sparklesSearchBarView";
 
 interface Video {
   id: string;
@@ -32,10 +34,23 @@ const videos: Video[] = [
 ];
 
 export const VideoGallery: React.FC = () => {
+  const [searchParams] = useSearchParams();
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const searchQuery = searchParams.get('search') || '';
+  
+  // Filter videos based on search query
+  const filteredVideos = videos.filter(video => 
+    video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    video.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-black p-8">
+      {/* Add search bar at the top */}
+      <div className="mb-12">
+        <SparklesSearchBarView />
+      </div>
+
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -43,16 +58,13 @@ export const VideoGallery: React.FC = () => {
         className="text-center mb-12"
       >
         <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-          Featured Videos
+          {searchQuery ? `Search Results for "${searchQuery}"` : 'Featured Videos'}
         </h1>
-        <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
-          Discover our curated collection of stunning videos that will take you on an unforgettable journey.
-        </p>
       </motion.div>
 
       {/* Video Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {videos.map((video, index) => (
+        {filteredVideos.map((video, index) => (
           <motion.div
             key={video.id}
             initial={{ opacity: 0, scale: 0.9 }}
@@ -89,6 +101,13 @@ export const VideoGallery: React.FC = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* Show "No results found" message if needed */}
+      {filteredVideos.length === 0 && (
+        <div className="text-center text-gray-400 mt-12">
+          <h2 className="text-2xl">No videos found matching "{searchQuery}"</h2>
+        </div>
+      )}
 
       {/* Modal for Video Player */}
       {selectedVideo && (
