@@ -2,6 +2,8 @@ import fastify from "fastify"
 import UserAccountRoutes from "@/api/routes/user_account"
 import cors from "@fastify/cors"
 import MovieCategoryRoutes from "./api/routes/movie_category"
+import MovieDirectorRoutes from "./api/routes/movie_director"
+import MovieRoutes from "./api/routes/movie"
 import { FastifyRequest, FastifyReply } from "fastify"
 
 // Create server with logging configuration
@@ -63,6 +65,8 @@ server.register(cors, {
 // Defined routes and middlewares
 server.register(UserAccountRoutes, { prefix: prefix })
 server.register(MovieCategoryRoutes, { prefix: prefix })
+server.register(MovieDirectorRoutes, { prefix: prefix })
+server.register(MovieRoutes, { prefix: prefix })
 
 // Graceful shutdown handling
 const gracefulShutdown = async () => {
