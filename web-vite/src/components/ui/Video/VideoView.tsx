@@ -1,22 +1,29 @@
 import React from 'react';
 import { VideoPlayer } from './VideoPlayer';
 import { motion } from "framer-motion";
+import 'videojs-youtube';
 
 interface VideoViewProps {
   movieTitle: string;
 }
 
-export const VideoView: React.FC = (props:VideoViewProps) => {
+export const VideoView: React.FC<VideoViewProps> = (props) => {
   const videoJsOptions = {
-    autoplay: false,
     controls: true,
     responsive: true,
     fluid: true,
-    playbackRates: [0.5, 1, 1.5, 2],
-    sources: [{
-      src: '//vjs.zencdn.net/v/oceans.mp4',
-      type: 'video/mp4'
-    }]
+    techOrder: ['youtube'],
+    sources: [
+      {
+        src: "https://www.youtube.com/watch?v=voFRslp8d60",
+        type: "video/youtube"
+      }
+    ],
+    youtube: {
+      ytControls: 0,
+      enablePrivacyEnhancedMode: true,
+      origin: window.location.origin
+    }
   };
 
   const handlePlayerReady = (player: any) => {

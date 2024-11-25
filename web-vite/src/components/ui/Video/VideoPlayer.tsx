@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
+import 'videojs-youtube';
 import type Player from 'video.js/dist/types/player';
 
 interface VideoPlayerProps {

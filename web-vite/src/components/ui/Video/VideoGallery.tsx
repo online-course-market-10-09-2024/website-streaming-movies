@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { VideoView } from './VideoView';
 import { motion } from 'framer-motion';
 import { IconPlayerPlay, IconX } from '@tabler/icons-react';
@@ -7,42 +7,36 @@ import { SparklesSearchBarView } from "../sparkle/sparklesSearchBarView";
 
 interface Video {
   id: string;
-  title: string;
+  name: string;
   description: string;
-  thumbnail: string;
-  duration: string;
-  views: string;
+  thumbnailImage: string;
+  trailerVideoUrl: string;
+  initialDate: string;
 }
-
-const videos: Video[] = [
-  {
-    id: '1',
-    title: 'Ocean Wonders',
-    description: 'Explore the depths of our magnificent oceans and discover the hidden treasures beneath the waves.',
-    thumbnail: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9',
-    duration: '3:45',
-    views: '1.2M'
-  },
-  {
-    id: '2',
-    title: 'Mountain Peaks',
-    description: 'Journey to the highest peaks and witness breathtaking views from the top of the world.',
-    thumbnail: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b',
-    duration: '4:20',
-    views: '892K'
-  },
-];
 
 export const VideoGallery: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [videos, setVideos] = useState<Video[]>([]);
   const searchQuery = searchParams.get('search') || '';
   
-  // Filter videos based on search query
-  const filteredVideos = videos.filter(video => 
-    video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    video.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/movies?search=${searchQuery}&limit=100&page=1`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.success && Array.isArray(data.data)) {
+          setVideos(data.data);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching videos:', error);
+      });
+  }, [searchQuery]);
 
   return (
     <div className="min-h-screen bg-black p-8">
@@ -64,7 +58,7 @@ export const VideoGallery: React.FC = () => {
 
       {/* Video Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {filteredVideos.map((video, index) => (
+        {videos.map((video, index) => (
           <motion.div
             key={video.id}
             initial={{ opacity: 0, scale: 0.9 }}
@@ -76,17 +70,18 @@ export const VideoGallery: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative overflow-hidden rounded-lg">
                 <img
-                  src={video.thumbnail}
-                  alt={video.title}
+                  src={video.thumbnailImage}
+                  alt={video.name}
                   className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-xl font-semibold text-white mb-2">{video.title}</h3>
+                    <h3 className="text-xl font-semibold text-white mb-2">{video.name}</h3>
                     <p className="text-gray-300 text-sm line-clamp-2 mb-4">{video.description}</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400 text-sm">{video.duration}</span>
-                      <span className="text-gray-400 text-sm">{video.views} views</span>
+                      <span className="text-gray-400 text-sm">
+                        {new Date(video.initialDate).toLocaleDateString()}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -103,7 +98,7 @@ export const VideoGallery: React.FC = () => {
       </div>
 
       {/* Show "No results found" message if needed */}
-      {filteredVideos.length === 0 && (
+      {videos.length === 0 && (
         <div className="text-center text-gray-400 mt-12">
           <h2 className="text-2xl">No videos found matching "{searchQuery}"</h2>
         </div>
