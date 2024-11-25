@@ -3,3 +3,10 @@ export enum CurrentOptionEnum {
   MOVIE_DIRECTOR = "movie-directors",
   MOVIE = "movies"
 }
+
+export enum FormStatusEnum {
+  INACTIVE = "INACTIVE",
+  INSERT = "insert",
+  UPDATE = "update",
+  REMOVE = "remove"
+}
