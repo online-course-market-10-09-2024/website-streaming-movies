@@ -11,6 +11,7 @@ export default function AdminPage(): JSX.Element {
 
   const [count, setCount] = useState<number>(0);
   const [data, setData] = useState([]);
+  const [dataInput, setDataInput] = useState<any>();
 
   const handleSearch = (text: string): void => {
     setSearch(text);
@@ -53,6 +54,9 @@ export default function AdminPage(): JSX.Element {
   const handleCurrentOption = (option: CurrentOptionEnum): void => {
     setCurrentOption(option)
   }
+  const handleDataInput = (input: any): void => {
+    setDataInput(input);
+  }
 
   console.log(search);
   console.log(data);
@@ -94,6 +98,7 @@ export default function AdminPage(): JSX.Element {
       <SidebarAdmin currentOption={currentOption} handleCurrentOption={handleCurrentOption} />
 
       <DashboardAdmin
+        dataInput={dataInput} handleDataInput={handleDataInput}
         currentOption={currentOption}
         handleSearch={handleSearch}
         page={page} maxPage={getMaxPage()}

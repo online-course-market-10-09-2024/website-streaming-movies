@@ -13,4 +13,13 @@ export type AnimationData = {
   color: string;
 }
 
-export type InputFormData = MovieCategory | undefined
+export type Movie = {
+  id: string
+  name: string
+  initialDate: string
+  thumbnailImage: string
+  trailerVideoUrl: string
+  description: string
+}
+
+export type InputFormData = MovieCategory | Movie | undefined

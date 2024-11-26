@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -15,110 +15,134 @@ import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "../ui/input";
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { MovieCategory } from "@/libs/movie_category";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "../ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../ui/pagination";
 import { FormStatusEnum } from "@/libs/enum";
 
 type Props = {
-  handleFormStatus: (status: FormStatusEnum) => void
-  handleSearch: (text: string) => void
-  page: number
-  maxPage: number
-  handleFirstPage: () => void
-  handlePreviousPage: () => void
-  handleNextPage: () => void
-  handleLastPage: () => void
-  data: MovieCategory[]
-}
+  handleDataInput: (input: any) => void;
+  handleFormStatus: (status: FormStatusEnum) => void;
+  handleSearch: (text: string) => void;
+  page: number;
+  maxPage: number;
+  handleFirstPage: () => void;
+  handlePreviousPage: () => void;
+  handleNextPage: () => void;
+  handleLastPage: () => void;
+  data: MovieCategory[];
+};
 
-// Column definitions
-export const columns: ColumnDef<MovieCategory>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected()
-            ? true
-            : table.getIsSomePageRowsSelected()
-            ? 'indeterminate'
-            : false
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "id",
-    header: "Category ID",
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("id")}</div>
-    ),
-  },
-  {
-    accessorKey: "name",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Category Name
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const rowData = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            {/* <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(category.id)}
-            > */}
-            <DropdownMenuItem>
-              Copy category ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Update</DropdownMenuItem>
-            <DropdownMenuItem>Remove</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
-];
-
-// Main component
 export function DataTableAdmin(props: Props) {
   const [searchInput, setSearchInput] = useState<string>("");
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+
+  const columns: ColumnDef<any>[] = useMemo(
+    () => [
+      {
+        id: "select",
+        header: ({ table }) => (
+          <Checkbox
+            checked={
+              table.getIsAllPageRowsSelected()
+                ? true
+                : table.getIsSomePageRowsSelected()
+                ? "indeterminate"
+                : false
+            }
+            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+            aria-label="Select all"
+          />
+        ),
+        cell: ({ row }) => (
+          <Checkbox
+            checked={row.getIsSelected()}
+            onCheckedChange={(value) => row.toggleSelected(!!value)}
+            aria-label="Select row"
+          />
+        ),
+        enableSorting: false,
+        enableHiding: false,
+      },
+      {
+        id: "id",
+        header: "ID",
+        cell: ({ row }) => row.original.id,
+      },
+      {
+        id: "name",
+        header: "Name",
+        cell: ({ row }) => row.original.name,
+      },
+      {
+        id: "actions",
+        header: "Actions",
+        enableHiding: false,
+        cell: ({ row }) => {
+          const rowData = row.original;
+
+          return (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-8 w-8 p-0">
+                  <span className="sr-only">Open menu</span>
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuItem
+                  onClick={() => navigator.clipboard.writeText(rowData.id)}
+                >
+                  Copy ID
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    props.handleDataInput(rowData);
+                    props.handleFormStatus(FormStatusEnum.UPDATE);
+                  }}
+                >
+                  Update
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    props.handleDataInput(rowData);
+                    props.handleFormStatus(FormStatusEnum.REMOVE);
+                  }}
+                >
+                  Remove
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          );
+        },
+      },
+    ],
+    [props]
+  );
 
   const table = useReactTable({
     data: props.data,
@@ -178,7 +202,9 @@ export function DataTableAdmin(props: Props) {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button onClick={() => props.handleFormStatus(FormStatusEnum.INSERT)}>Insert</Button>
+          <Button onClick={() => props.handleFormStatus(FormStatusEnum.INSERT)}>
+            Insert
+          </Button>
         </div>
       </div>
 
@@ -219,10 +245,7 @@ export function DataTableAdmin(props: Props) {
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
@@ -231,52 +254,63 @@ export function DataTableAdmin(props: Props) {
         </Table>
       </div>
 
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-gray-500">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
-      </div>
-
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious className="hover:cursor-pointer" onClick={() => props.handlePreviousPage()}  />
+            <PaginationPrevious
+              className="hover:cursor-pointer"
+              onClick={() => props.handlePreviousPage()}
+            />
           </PaginationItem>
 
-          {props.page !== 1 &&
+          {props.page !== 1 && (
             <PaginationItem>
-              <PaginationLink className="hover:cursor-pointer" onClick={() => props.handleFirstPage()}>1</PaginationLink>
+              <PaginationLink
+                className="hover:cursor-pointer"
+                onClick={() => props.handleFirstPage()}
+              >
+                1
+              </PaginationLink>
             </PaginationItem>
-          }
+          )}
 
-          {props.page > 2 &&
+          {props.page > 2 && (
             <PaginationItem>
               <PaginationEllipsis />
             </PaginationItem>
-          }
+          )}
 
           <PaginationItem>
-            <PaginationLink className="bg-black text-white">{props.page}</PaginationLink>
+            <PaginationLink className="bg-black text-white">
+              {props.page}
+            </PaginationLink>
           </PaginationItem>
 
-          {props.page < props.maxPage - 1 &&
+          {props.page < props.maxPage - 1 && (
             <PaginationItem>
               <PaginationEllipsis />
             </PaginationItem>
-          }
+          )}
 
-          {props.page !== props.maxPage &&
+          {props.page !== props.maxPage && (
             <PaginationItem>
-              <PaginationLink className="hover:cursor-pointer" onClick={() => props.handleLastPage()}>{props.maxPage}</PaginationLink>
+              <PaginationLink
+                className="hover:cursor-pointer"
+                onClick={() => props.handleLastPage()}
+              >
+                {props.maxPage}
+              </PaginationLink>
             </PaginationItem>
-          }
+          )}
 
           <PaginationItem>
-            <PaginationNext className="hover:cursor-pointer" onClick={() => props.handleNextPage()} />
+            <PaginationNext
+              className="hover:cursor-pointer"
+              onClick={() => props.handleNextPage()}
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-    </div> 
+    </div>
   );
 }

@@ -4,6 +4,8 @@ import { FormStatusEnum } from "@/libs/enum";
 import FormAdmin from "../form/FormAdmin";
 
 type Props = {
+  dataInput: any
+  handleDataInput: (input: any) => void
   currentOption: string
   handleSearch: (text: string) => void
   page: number
@@ -30,6 +32,7 @@ export default function AdminDashboard(props: Props): JSX.Element {
         </h2>
 
         <DataTableAdmin
+          handleDataInput={props.handleDataInput}
           handleFormStatus={handleFormStatus}
           handleSearch={props.handleSearch}
           page={props.page} maxPage={props.maxPage}
@@ -38,7 +41,7 @@ export default function AdminDashboard(props: Props): JSX.Element {
         />
 
         {formStatus !== FormStatusEnum.INACTIVE &&
-          <FormAdmin currentOption={props.currentOption} formStatus={formStatus} handleFormStatus={handleFormStatus} />
+          <FormAdmin dataInput={props.dataInput} currentOption={props.currentOption} formStatus={formStatus} handleFormStatus={handleFormStatus} />
         }
       </div>
     </div>

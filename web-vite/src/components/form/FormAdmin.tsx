@@ -1,14 +1,19 @@
 import { CurrentOptionEnum, FormStatusEnum } from "@/libs/enum"
 import { Button } from "../ui/button"
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 
 import { ReplaceHyphenWithSpace, ToTitle } from "@/libs/string"
 import { Input } from "../ui/input"
-import { InputFormData } from "@/libs/types"
+import { Calendar } from "@/components/ui/calendar"
+import { InputFormData, Movie } from "@/libs/types"
 import { MovieCategory } from "@/libs/movie_category"
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
+import { CalendarIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { format } from "date-fns"
 
 type ChildProps = {
-  data: InputFormData
+  data: any
   setData: React.Dispatch<React.SetStateAction<InputFormData>>;
   formStatus: FormStatusEnum
 }
@@ -68,14 +73,248 @@ function InputMovieCategory(props: ChildProps) {
   );
 }
 
+function InputMovie(props: ChildProps) {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    field: keyof Movie
+  ) => {
+    props.setData((prevData) => ({
+      ...prevData,
+      [field]: event.target.value,
+    }));
+  };
+
+  const handleDateChange = (selectedDate: Date | undefined) => {
+    if (selectedDate) {
+      props.setData((prevData) => {
+        // Ensure prevData is of type Movie and copy all fields
+        if (prevData && "id" in prevData && "thumbnailImage" in prevData) {
+          return {
+            ...prevData,
+            initialDate: selectedDate.toISOString().split("T")[0], // Update initialDate
+          };
+        }
+        // Return prevData if it doesn't match the expected shape
+        return prevData;
+      });
+    }
+  };
+
+  return (
+    <div>
+      {props.formStatus === FormStatusEnum.INSERT && (
+        <>
+          <div>
+            <label>Name:</label>
+            <Input
+              type="text"
+              value={props.data?.name || ""}
+              onChange={(e) => handleChange(e, "name")}
+            />
+          </div>
+
+          <div>
+            <label>Thumbnail image:</label>
+            <Input
+              type="text"
+              value={props.data?.thumbnailImage || ""}
+              onChange={(e) => handleChange(e, "thumbnailImage")}
+            />
+          </div>
+
+          <div>
+            <label>Initial date:</label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-[280px] justify-start text-left font-normal",
+                    !props.data?.initialDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon />
+                  {props.data?.initialDate ? format(props.data?.initialDate, "PPP") : <span>Pick a date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={props.data?.initialDate ? new Date(props.data.initialDate) : undefined}
+                  onSelect={handleDateChange}
+                  className="rounded-md border"
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div>
+            <label>Trailer Video Url:</label>
+            <Input
+              type="text"
+              value={props.data?.trailerVideoUrl || ""}
+              onChange={(e) => handleChange(e, "trailerVideoUrl")}
+            />
+          </div>
+          
+          <div>
+            <label>Description:</label>
+            <Input
+              type="text"
+              value={props.data?.description || ""}
+              onChange={(e) => handleChange(e, "description")}
+            />
+          </div>
+        </>
+      )}
+
+      {props.formStatus === FormStatusEnum.UPDATE && (
+        <>
+          <div>
+            <label>Name:</label>
+            <Input
+              type="text"
+              value={props.data?.name || ""}
+              onChange={(e) => handleChange(e, "name")}
+            />
+          </div>
+
+          <div>
+            <label>Thumbnail image:</label>
+            <Input
+              type="text"
+              value={props.data?.thumbnailImage || ""}
+              onChange={(e) => handleChange(e, "thumbnailImage")}
+            />
+          </div>
+
+          <div>
+            <label>Initial date:</label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-[280px] justify-start text-left font-normal",
+                    !props.data?.initialDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon />
+                  {props.data?.initialDate ? format(props.data?.initialDate, "PPP") : <span>Pick a date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={props.data?.initialDate ? new Date(props.data.initialDate) : undefined}
+                  onSelect={handleDateChange}
+                  className="rounded-md border"
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div>
+            <label>Trailer Video Url:</label>
+            <Input
+              type="text"
+              value={props.data?.trailerVideoUrl || ""}
+              onChange={(e) => handleChange(e, "trailerVideoUrl")}
+            />
+          </div>
+          
+          <div>
+            <label>Description:</label>
+            <Input
+              type="text"
+              value={props.data?.description || ""}
+              onChange={(e) => handleChange(e, "description")}
+            />
+          </div>
+        </>
+      )}
+
+      {props.formStatus === FormStatusEnum.REMOVE && (
+        <>
+          <div>
+            <label>Name:</label>
+            <Input
+              type="text"
+              value={props.data?.name || ""}
+              onChange={(e) => handleChange(e, "name")}
+            />
+          </div>
+
+          <div>
+            <label>Thumbnail image:</label>
+            <Input
+              type="text"
+              value={props.data?.thumbnailImage || ""}
+              onChange={(e) => handleChange(e, "thumbnailImage")}
+            />
+          </div>
+
+          <div>
+            <label>Initial date:</label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-[280px] justify-start text-left font-normal",
+                    !props.data?.initialDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon />
+                  {props.data?.initialDate ? format(props.data?.initialDate, "PPP") : <span>Pick a date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={props.data?.initialDate ? new Date(props.data.initialDate) : undefined}
+                  onSelect={handleDateChange}
+                  className="rounded-md border"
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <div>
+            <label>Trailer Video Url:</label>
+            <Input
+              type="text"
+              value={props.data?.trailerVideoUrl || ""}
+              onChange={(e) => handleChange(e, "trailerVideoUrl")}
+            />
+          </div>
+          
+          <div>
+            <label>Description:</label>
+            <Input
+              type="text"
+              value={props.data?.description || ""}
+              onChange={(e) => handleChange(e, "description")}
+            />
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 type Props = {
+  dataInput: any
   currentOption: string
   formStatus: FormStatusEnum
   handleFormStatus: (status: FormStatusEnum) => void
 }
 
 export default function FormAdmin(props: Props) {
-  const [data, setData] = useState<InputFormData>(undefined);
+  const [data, setData] = useState<any>(props.dataInput);
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
@@ -107,6 +346,24 @@ export default function FormAdmin(props: Props) {
     }
   }
 
+  useEffect(() => {
+    if (props.currentOption === CurrentOptionEnum.MOVIE_CATEGORY) {
+      setData({
+        id: "",
+        name: "",
+      } as MovieCategory);
+    } else if (props.currentOption === CurrentOptionEnum.MOVIE) {
+      setData({
+        id: "",
+        name: "",
+        initialDate: "",
+        thumbnailImage: "",
+        trailerVideoUrl: "",
+        description: "",
+      } as Movie);
+    }
+  }, [props.currentOption]);  
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <form 
@@ -118,6 +375,10 @@ export default function FormAdmin(props: Props) {
         <div className="flex flex-col space-y-4">
           {props.currentOption === CurrentOptionEnum.MOVIE_CATEGORY &&
             <InputMovieCategory data={data} setData={setData} formStatus={props.formStatus} />
+          }
+
+          {props.currentOption === CurrentOptionEnum.MOVIE &&
+            <InputMovie data={data} setData={setData} formStatus={props.formStatus} />
           }
         </div>
 
