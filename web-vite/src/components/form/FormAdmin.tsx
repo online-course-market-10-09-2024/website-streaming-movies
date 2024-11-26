@@ -172,6 +172,16 @@ function InputMovie(props: ChildProps) {
       {props.formStatus === FormStatusEnum.UPDATE && (
         <>
           <div>
+            <label>Id:</label>
+            <Input
+              readOnly={true}
+              type="text"
+              value={props.data?.id || ""}
+              onChange={(e) => handleChange(e, "id")}
+            />
+          </div>
+
+          <div>
             <label>Name:</label>
             <Input
               type="text"
@@ -239,8 +249,19 @@ function InputMovie(props: ChildProps) {
       {props.formStatus === FormStatusEnum.REMOVE && (
         <>
           <div>
+            <label>Id:</label>
+            <Input
+              readOnly={true}
+              type="text"
+              value={props.data?.id || ""}
+              onChange={(e) => handleChange(e, "id")}
+            />
+          </div>
+
+          <div>
             <label>Name:</label>
             <Input
+              readOnly={true}
               type="text"
               value={props.data?.name || ""}
               onChange={(e) => handleChange(e, "name")}
@@ -250,6 +271,7 @@ function InputMovie(props: ChildProps) {
           <div>
             <label>Thumbnail image:</label>
             <Input
+              readOnly={true}
               type="text"
               value={props.data?.thumbnailImage || ""}
               onChange={(e) => handleChange(e, "thumbnailImage")}
@@ -286,6 +308,7 @@ function InputMovie(props: ChildProps) {
           <div>
             <label>Trailer Video Url:</label>
             <Input
+              readOnly={true}
               type="text"
               value={props.data?.trailerVideoUrl || ""}
               onChange={(e) => handleChange(e, "trailerVideoUrl")}
@@ -295,6 +318,7 @@ function InputMovie(props: ChildProps) {
           <div>
             <label>Description:</label>
             <Input
+              readOnly={true}
               type="text"
               value={props.data?.description || ""}
               onChange={(e) => handleChange(e, "description")}
@@ -323,44 +347,79 @@ export default function FormAdmin(props: Props) {
       return;
     }
 
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/${props.currentOption}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Data successfully submitted:", result);
-        // Handle success (e.g., reset form, close modal, etc.)
-        props.handleFormStatus(FormStatusEnum.INACTIVE); // Close form
-        setData(undefined); // Reset form data
-      } else {
-        console.error("Failed to submit data:", response.statusText);
+    if (props.formStatus === FormStatusEnum.INSERT) {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/${props.currentOption}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+  
+        if (response.ok) {
+          const result = await response.json();
+          console.log("Data successfully submitted:", result);
+          // Handle success (e.g., reset form, close modal, etc.)
+          props.handleFormStatus(FormStatusEnum.INACTIVE); // Close form
+          setData(undefined); // Reset form data
+        } else {
+          console.error("Failed to submit data:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error during submission:", error);
       }
-    } catch (error) {
-      console.error("Error during submission:", error);
+    } else if (props.formStatus === FormStatusEnum.UPDATE) {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/${props.currentOption}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+  
+        if (response.ok) {
+          const result = await response.json();
+          console.log("Data successfully submitted:", result);
+          // Handle success (e.g., reset form, close modal, etc.)
+          props.handleFormStatus(FormStatusEnum.INACTIVE); // Close form
+          setData(undefined); // Reset form data
+        } else {
+          console.error("Failed to submit data:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error during submission:", error);
+      }
+    } else if (props.formStatus === FormStatusEnum.REMOVE) {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/${props.currentOption}/${data.id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (response.ok) {
+          const result = await response.json();
+          console.log("Data successfully submitted:", result);
+          // Handle success (e.g., reset form, close modal, etc.)
+          props.handleFormStatus(FormStatusEnum.INACTIVE); // Close form
+          setData(undefined); // Reset form data
+        } else {
+          console.error("Failed to submit data:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error during submission:", error);
+      }
     }
   }
 
   useEffect(() => {
     if (props.currentOption === CurrentOptionEnum.MOVIE_CATEGORY) {
-      setData({
-        id: "",
-        name: "",
-      } as MovieCategory);
+      setData(props.dataInput as MovieCategory);
     } else if (props.currentOption === CurrentOptionEnum.MOVIE) {
-      setData({
-        id: "",
-        name: "",
-        initialDate: "",
-        thumbnailImage: "",
-        trailerVideoUrl: "",
-        description: "",
-      } as Movie);
+      setData(props.dataInput as Movie);
     }
   }, [props.currentOption]);  
 

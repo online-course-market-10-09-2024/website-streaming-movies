@@ -58,9 +58,7 @@ export default function AdminPage(): JSX.Element {
     setDataInput(input);
   }
 
-  console.log(search);
-  console.log(data);
-  console.log(count);
+  console.log(dataInput)
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/api/${currentOption}?search=${search}&limit=10&page=${page}`)
