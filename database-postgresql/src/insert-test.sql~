@@ -63,7 +63,7 @@ INSERT INTO movie_category (name) VALUES ('category 60');
 
 -- Insert movie
 INSERT INTO movie (id, name, thumbnail_image, trailer_video_url)
-VALUES ('0bc66ff1-15ec-4d54-8830-1baf807b8091', 'NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
+VALUES ('0bc66ff1-15ec-4d54-8830-1baf807b8091', 'NEW MOVIE TRAILERS 2024 & 2025', '', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
 INSERT INTO movie (id, name, thumbnail_image, trailer_video_url)
 VALUES ('2292fde6-3594-4924-b6be-d5336d7882ec', 'A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
 INSERT INTO movie (id, name, thumbnail_image, trailer_video_url)
@@ -72,97 +72,7 @@ INSERT INTO movie (name, thumbnail_image, trailer_video_url)
 VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
 
 INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('Mission: Impossible – The Final Reckoning', 'https://cinemanerdz.com/wp-content/uploads/2024/11/MI8_DOM_Online_Teaser_1-Sheet_01_FIN4.jpg', 'https://www.youtube.com/watch?v=NOhDyUmT9z0');
-
-INSERT INTO movie (name, thumbnail_image, trailer_video_url)
-VALUES ('NEW MOVIE TRAILERS 2024 & 2025', 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/movie-time-youtube-thumbnail-design-template-f9d2d8708538c1b8dac1279b304b68ad_screen.jpg?ts=1698247821', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
+VALUES ('NEW MOVIE TRAILERS 2024 & 2025', '', 'https://www.youtube.com/watch?v=-la1v2dMuj4');
 INSERT INTO movie (name, thumbnail_image, trailer_video_url)
 VALUES ('A Minecraft Movie', 'https://m.media-amazon.com/images/M/MV5BMDBiZTZlYTYtNDdjOC00MzUyLWIwMDEtOTI3YWU0MTQxNTBiXkEyXkFqcGc@._V1_QL75_UX1230_.jpg', 'https://www.youtube.com/watch?v=wJO_vIDZn-I');
 INSERT INTO movie (name, thumbnail_image, trailer_video_url)

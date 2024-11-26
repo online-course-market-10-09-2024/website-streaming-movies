@@ -14,7 +14,6 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ options, onReady }) =>
   const playerRef = useRef<Player | null>(null);
 
   useEffect(() => {
-    // Make sure Video.js player is only initialized once
     if (!playerRef.current) {
       const videoElement = document.createElement("video-js");
       videoElement.classList.add('vjs-big-play-centered');
@@ -24,7 +23,6 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ options, onReady }) =>
         onReady && onReady(playerRef.current as Player);
       });
     } else {
-      // Update player options if they change
       const player = playerRef.current;
       player.autoplay(options.autoplay);
       player.src(options.sources);

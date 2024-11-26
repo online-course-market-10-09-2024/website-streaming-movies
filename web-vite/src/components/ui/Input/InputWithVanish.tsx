@@ -3,7 +3,6 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { cn } from "@/libs/utils"
 import { AnimationData, PixelData } from "@/libs/types"
 import React from "react"
-
 type Props = {
   placeholders: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,6 +12,8 @@ type Props = {
 export default function InputWithVanish(props: Props) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState<number>(0)
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const startAnimation = useCallback(() => {
@@ -159,7 +160,7 @@ export default function InputWithVanish(props: Props) {
     setAnimating(true)
     draw()
 
-    const value = inputRef.current?.value || ""
+    const value = inputRef.current?.value || " "
     if (value && inputRef.current) {
       const maxX = newDataRef.current.reduce(
         (prev, current) => (current.x > prev ? current.x : prev),
