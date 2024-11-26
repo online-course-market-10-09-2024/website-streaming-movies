@@ -37,9 +37,9 @@ export default function AdminDashboard(props: Props): JSX.Element {
           data={props.data}
         />
 
-        {formStatus !== FormStatusEnum.INACTIVE && (
+        {formStatus !== FormStatusEnum.INACTIVE &&
           <FormAdmin currentOption={props.currentOption} formStatus={formStatus} handleFormStatus={handleFormStatus} />
-        )}
+        }
       </div>
     </div>
   );

@@ -84,7 +84,7 @@ export const columns: ColumnDef<MovieCategory>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const category = row.original;
+      const rowData = row.original;
 
       return (
         <DropdownMenu>
@@ -96,14 +96,15 @@ export const columns: ColumnDef<MovieCategory>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
+            {/* <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(category.id)}
-            >
+            > */}
+            <DropdownMenuItem>
               Copy category ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit category</DropdownMenuItem>
-            <DropdownMenuItem>View movies in category</DropdownMenuItem>
+            <DropdownMenuItem>Update</DropdownMenuItem>
+            <DropdownMenuItem>Remove</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

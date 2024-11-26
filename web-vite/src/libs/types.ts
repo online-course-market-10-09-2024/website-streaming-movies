@@ -1,3 +1,5 @@
+import { MovieCategory } from "./movie_category";
+
 export type PixelData = {
   x: number;
   y: number;
@@ -10,3 +12,5 @@ export type AnimationData = {
   r: number;
   color: string;
 }
+
+export type InputFormData = MovieCategory | undefined
