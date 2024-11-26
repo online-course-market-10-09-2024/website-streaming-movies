@@ -1,12 +1,12 @@
-import { SparklesView } from "@/components/ui/sparkle/sparkleView";
-import { HeroParallaxView } from "@/components/ui/parallax/HeroParallaxView";
-import React from "react";
+import React from "react"
+import { HeroParallaxView } from "@/components/ui/parallax/HeroParallaxView"
+import { SparklesSearchBarView } from "@/components/ui/sparkle/sparklesSearchBarView"
 
 export const Dashboard = () => {
   return (
     <div className="bg-black min-h-screen w-full">
-      <SparklesView />
+      <SparklesSearchBarView />
       <HeroParallaxView />
     </div>
-  );
-};
+  )
+}
